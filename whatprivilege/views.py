@@ -8,3 +8,11 @@ def home(request):
 def instructions(request): 
     #logics....
     return render_to_response('templates/instructions.html',{})
+
+def questions(request):
+    #logics...
+    return render_to_response('templates/questions.html', {}) 
+
+def learned(request):
+    #logics...
+    return render_to_response('templates/learned.html', {})
