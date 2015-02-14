@@ -3,16 +3,17 @@ from django.shortcuts import render_to_response
 
 def home(request):
     #logics .... 
-    return render_to_response('templates/home.html', {}) 
+    return render_to_response('home.html', {}) 
 
 def instructions(request): 
     #logics....
-    return render_to_response('templates/instructions.html',{})
+    return render_to_response('instructions.html',{})
 
 def questions(request):
     #logics...
-    return render_to_response('templates/questions.html', {}) 
+    return render_to_response('questions.html', {}) 
 
 def learned(request):
     #logics...
-    return render_to_response('templates/learned.html', {})
+    return render_to_response('learned.html', {})
+
