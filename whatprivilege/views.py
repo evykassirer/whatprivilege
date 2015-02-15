@@ -28,6 +28,7 @@ def question(request):
         else :
             # cookie was already set
             cookie_set = True
+        q_id = current_q.id
     question = get_question(q_id)
     # most cases - load next question
     if question :
