@@ -11,7 +11,7 @@ def instructions(request):
     return render_to_response('instructions.html',{})
 
 def makeWorkshop(request):
-	return render_to_response('')
+	return render_to_response('workshop.html')
 
 def question(request):
     q_id = 0
