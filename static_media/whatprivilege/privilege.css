@@ -20,14 +20,20 @@
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
-  height: 40px; /* Height of fixed banner. */
+  height: 50px; /* Height of fixed banner. */
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
   background-color: rgba(255, 255, 255, 0.85); /* Make banner slightly transparent. */
   border-bottom: solid;
   border-bottom-width: 1px;
-  border-color: rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0, 0.5);
+}
+
+.banner {
+       text-decoration: none;
+       text-color: grey; 
+       color: grey;
 }
 
 .italics {
@@ -53,12 +59,12 @@
 .moveApartLeft {
 	margin-left: 1%;
 }
-
+/*
 .body {
 	background-image: url("gplaypattern.png");
 	background-repeat: repeat-x;
 }
-
+*/
 .moveApartRight {
 	margin-right: 1%;
 }
