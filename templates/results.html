@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container center">
+  	{% for q in questions %}
+  	<div> {{q.questionText}} </div>
+  	<div> #yes: {{ q.numberYes }}, #no: {{ q.numberNo }}</div>
+  	{% endfor %} 
+  </div>
+{% endblock %}

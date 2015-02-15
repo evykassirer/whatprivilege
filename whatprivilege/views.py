@@ -31,7 +31,7 @@ def question(request):
         return render_to_response('question.html', context) 
     else :
     	questions = Question.objects.order_by('pk')
-        return render_to_response('results.html',{})
+        return render_to_response('results.html',questions)
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
