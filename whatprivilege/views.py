@@ -62,6 +62,7 @@ def question(request):
     if question :
         context = {
              'question': question,
+             'percent_yes': get_percent_yes(question),
         } 
         context = RequestContext(request, context)
         response = render_to_response('question.html', context) 
@@ -74,6 +75,7 @@ def question(request):
     	questions = Question.objects.order_by('pk')
     	context = {
     		'questions': questions,
+                'percent_yes': 0,
     	}
     	response = render_to_response('results.html', context) 
         if not cookie_set and current_q:
@@ -93,4 +95,12 @@ def get_question(previous=None):
     else:
         question = Question.objects.filter(id__gt=previous).first()
     return question
+
+def get_percent_yes(question):
+    if not question:
+        return 0
+    return int(round(
+        float(question.numberYes) / float(question.numberYes + question.numberNo),
+        2
+    ) * 100)
 
