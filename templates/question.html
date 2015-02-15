@@ -13,7 +13,7 @@
     <form action="/question/" method="post">
       {% csrf_token %}
       <div class="row">
-          <input class="button" type="submit" value="skip">
+          <input class="button" id="skip" type="submit" value="skip">
       </div>
       <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
       <input class="hidden" type="text" name="yesno" id="yesno" value="">
