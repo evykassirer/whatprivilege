@@ -11,7 +11,7 @@ def instructions(request):
     return render_to_response('instructions.html',{})
 
 def question(request):
-    q_id = 1
+    q_id = 0
     current_q = False
     cookie_set = False
     if request.method == 'POST':
@@ -28,7 +28,6 @@ def question(request):
         else :
             # cookie was already set
             cookie_set = True
-        q_id = current_q.id + 1
     question = get_question(q_id)
     # most cases - load next question
     if question :
