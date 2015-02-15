@@ -1,6 +1,19 @@
-#bar {
-  text-align: center;
+.bar {
+
+  /*text-align: center;
+  align: center;*/
   width: 0px;
-  background: green;
-  border-right: 0px solid red;
+  background: #33C3F0;
+  /*border-right: 0px solid grey;
+  border-width: 0px;*/
+}
+
+.fill {
+  width: 100%;
+  background: grey;
+}
+
+.horizontal {
+  width: 50%;
+  margin-left: 25%;
 }
