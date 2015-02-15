@@ -63,12 +63,12 @@ a:active {
 .moveApartLeft {
 	margin-left: 1%;
 }
-
+/*
 .body {
 	background-image: url("gplaypattern.png");
 	background-repeat: repeat-x;
 }
-
+*/
 .moveApartRight {
 	margin-right: 1%;
 }
