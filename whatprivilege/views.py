@@ -55,7 +55,6 @@ def question(request):
 
     if request.COOKIES.has_key("workshop") :
         workshop = request.COOKIES["workshop"]
-
     if request.method == 'POST':
         alldata = request.POST
         answer = alldata.get("yesno")
