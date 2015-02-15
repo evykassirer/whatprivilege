@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from whatprivilege.models import Question
 from django.template import RequestContext
+from django.core.context_processors import csrf 
 
 def home(request):
     #logics .... 
@@ -25,8 +26,9 @@ def question(request):
     question = get_question()
     context = {
         'question': question,
-    }    
-    return render_to_response('question.html', context, RequestContext(request)) 
+    } 
+    context.update(csrf(request))   
+    return render_to_response('question.html', context) 
 
 def learned(request):
     #logics...
