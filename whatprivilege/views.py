@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-#from whatprivilege.models import Question
+from whatprivilege.models import Question
 
 def home(request):
     #logics .... 
