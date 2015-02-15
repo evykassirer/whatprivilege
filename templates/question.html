@@ -3,6 +3,24 @@
 {% block content %}
 
 <div class="container center">
+    {% if  questions %}
+    <table class="u-full-width under-banner">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Percent who answered no</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for question in questions %}
+        <tr>
+          <td>{{ question.questionText }}</td>
+          <td>{{ question.percent }}</td>
+        {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+    {% else %}
     <div class="row question">
       <h3>{{ question.questionText }}</h3>
     </div>
@@ -17,20 +35,32 @@
       </div>
           <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
           <input class="hidden" type="text" name="yesno" id="yesno" value="">
-     <div class="row">          
+      <div class="row">          
         <input class="button-primary" id="next" type="submit" value="Next">
       </div>
+      {% if workshop_percent_no %}
+      <div class="row spaced">
+          <div class="horizontal">
+            <div class="center fill" id="fill2"><div id="bar2" class="bar">&nbsp</div></div>
+          </div>
+      </div>
+      
+      <div class="row">
+        <h6 id="result2" data-percent-yes="{{ workshop_percent_no }}">{{ workshop_percent_no }}% of your group answered no to this question</h6>
+      </div>
+      {% endif %} 
+      
       <div class="row spaced">
           <div class="horizontal">
             <div class="center fill" id="fill"><div id="bar" class="bar">&nbsp</div></div>
           </div>
       </div>
-      
-      <div class="row">
-       <h6 id="result" data-percent-yes="{{ percent_yes }}">{{ percent_yes }}% answered yes to this question</h6>
+     <div class="row">
+       <h6 id="result" data-percent-yes="{{ percent_no }}">{{ percent_no }}% answered no to this question</h6>
       </div>
     </form>
-  </div>
+    {% endif %}
+</div>
 
 <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

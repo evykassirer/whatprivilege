@@ -40,26 +40,43 @@ def makeWorkshop(request):
 
 def loadWorkshop(request, code):
 	response = render_to_response('home.html')
-	w = Workshop.objects.filter(urlCode=code)
-	if code and w.exists()) :
-		response.set_cookie(w.id, 'on')
+	try:
+	    w = Workshop.objects.get(urlCode=code)
+	except Workshop.DoesNotExist:
+	    return response
+	response.set_cookie('workshop', str(w.id))
 	return response	
 
 def question(request):
-    q_id = 0
+    q_id = None
     current_q = False
     cookie_set = False
+    workshop = -1
+
+    if request.COOKIES.has_key("workshop") :
+        workshop = request.COOKIES["workshop"]
+
     if request.method == 'POST':
         alldata = request.POST
         answer = alldata.get("yesno")
         current_q = Question.objects.get(id=alldata.get("qnumber"))
         # check if they have answered this question already
         if not request.COOKIES.has_key(str(current_q.id)) :
+            w = False
+            if workshop >= 0:
+                w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=current_q.id).first()
             if answer == 'yes':
                 current_q.numberYes += 1
+                if w:
+                    w.numberYes += 1
 	    elif answer == 'no':
 	        current_q.numberNo += 1
+                if w:
+                    w.numberNo += 1
 	    current_q.save()
+            if w:
+                w.save()
+                
         else : # cookie was already set
             cookie_set = True
         q_id = current_q.id
@@ -69,8 +86,11 @@ def question(request):
     if question :
         context = {
              'question': question,
-             'percent_yes': get_percent_yes(question),
-        } 
+             'percent_no': get_percent_no(question.numberYes, question.numberNo),
+        }
+        if workshop >= 0:
+             w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=question.id).first()
+             context['workshop_percent_no'] = get_percent_no(w.numberYes, w.numberNo)
         context = RequestContext(request, context)
         response = render_to_response('question.html', context) 
         if not cookie_set and current_q :
@@ -80,11 +100,15 @@ def question(request):
     # we have iterated through all questions
     else :
     	questions = Question.objects.order_by('pk')
+
+        for question in questions:
+            question.percent = get_percent_no(question.numberYes, question.numberNo)
+
     	context = {
     		'questions': questions,
-                'percent_yes': 0,
+                'percent_no': 100,
     	}
-    	response = render_to_response('results.html', context) 
+    	response = render_to_response('question.html', context) 
         if not cookie_set and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
@@ -103,11 +127,10 @@ def get_question(previous=None):
         question = Question.objects.filter(id__gt=previous).first()
     return question
 
-def get_percent_yes(question):
-    if not question:
+def get_percent_no(yes, no):
+    if yes + no == 0:
         return 0
     return int(round(
-        float(question.numberYes) / float(question.numberYes + question.numberNo),
+        float(no) / float(yes + no),
         2
     ) * 100)
-
