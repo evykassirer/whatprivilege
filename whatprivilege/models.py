@@ -7,11 +7,3 @@ class Question(models.Model):
 	numberYes=models.IntegerField()
 	numberNo=models.IntegerField()
 
-class Instruction(models.Model):
-	instructionText=models.TextField()
-
-class Welcome(models.Model):
-	welcomeText=models.TextField()
-
-	
-
