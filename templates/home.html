@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load staticfiles %}
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -19,9 +20,10 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/privilege.css">
+<link rel="stylesheet" href={% static "whatprivilege/normalize.css" %}>
+<link rel="stylesheet" href="{% static "whatprivilege/skeleton.css" %}">
+<link rel="stylesheet" href="{% static "whatprivilege/privilege.css" %}">
+
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
