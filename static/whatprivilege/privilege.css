@@ -15,3 +15,7 @@
 .question {
 	margin-top: 2em;
 }
+
+.italics {
+	font-style: italic;
+}
