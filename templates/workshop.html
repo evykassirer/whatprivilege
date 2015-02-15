@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container center">
-  	<h3>Get a custom url to hold your workshop?</div>
-  	<button class="button-primary" id="workshop-button">Button element</button>
-  	<p id="your-url">Your url:</p>
-  	<p id="text"></p>
+  	<br>
+  	<br>
+  	<h3>Get a custom url for your workshop</h3>
+  	{% if url %}
+  	  	<a href={{url}}>{{url}}</a>
+  	{% else %}
+  	<form action="/workshop-code/" method="post">
+  	    {% csrf_token %}		
+  		<input class="button-primary" id="workshop-button" type="submit" value="Generate URL">
+  	</form>
+  	{% endif %}
   </div>
-
-<!-- JS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src={% static "whatprivilege/workshop.js" %}></script>
 {% endblock %}

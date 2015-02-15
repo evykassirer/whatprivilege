@@ -1,6 +1,10 @@
 from django.shortcuts import render_to_response
 from whatprivilege.models import Question
+from whatprivilege.models import WorkshopQuestion
+from whatprivilege.models import Workshop
 from django.template import RequestContext
+import uuid
+from md5 import md5
 
 def home(request):
     #logics .... 
@@ -11,7 +15,28 @@ def instructions(request):
     return render_to_response('instructions.html',{})
 
 def makeWorkshop(request):
-	return render_to_response('workshop.html')
+    if request.method == 'POST':
+        url=str(md5(str(uuid.uuid4())).hexdigest())
+        while (Workshop.objects.filter(urlCode=url).exists()) :
+            url=str(md5(str(uuid.uuid4())).hexdigest())        
+        new_wokshop = Workshop(urlCode=url)
+        new_workshop.save()
+        qs = Question.objects
+        for q in qs :
+            wq = WorkshopQuestion(
+                workshopID: new_workshop.id,
+                qID: q.id,
+                numberYes: 0,
+                numberNo: 0
+            )
+            wq.save()
+        context = {
+            'url':'http://whatprivilege.me/'+url
+        }
+        return render_to_response('workshop.html', context)
+    else:
+    	context = RequestContext(request, {})
+        return render_to_response('workshop.html', context)
 
 def question(request):
     q_id = 0

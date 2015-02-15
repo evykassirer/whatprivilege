@@ -1,3 +1,7 @@
+$(your-url).hide();
+$(text).hide();
+
 $(workshop-button).on('click', function() {
-	$(text)
+	$(your-url).show();
+	$(text).text = 
 });
