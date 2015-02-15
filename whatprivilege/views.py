@@ -17,8 +17,8 @@ def instructions(request):
 def makeWorkshop(request):
     if request.method == 'POST':
         url=str(md5(str(uuid.uuid4())).hexdigest())
-#        while (Workshop and Workshop.objects and Workshop.objects.filter(urlCode=url).exists()) :
-#            url=str(md5(str(uuid.uuid4())).hexdigest())        
+        while (Workshop.objects.filter(urlCode=url).exists()) :
+            url=str(md5(str(uuid.uuid4())).hexdigest())        
         new_workshop = Workshop(urlCode=url)
         new_workshop.save()
         qs = Question.objects.all()
@@ -31,12 +31,19 @@ def makeWorkshop(request):
             )
             wq.save()
         context = {
-            'url':'http://whatprivilege.me/'+url
+            'url':'http://whatprivilege.me/workshop-code/'+url
         }
         return render_to_response('workshop.html', context)
     else:
     	context = RequestContext(request, {})
         return render_to_response('workshop.html', context)
+
+def loadWorkshop(request, code):
+	response = render_to_response('home.html')
+	w = Workshop.objects.filter(urlCode=code)
+	if code and w.exists()) :
+		response.set_cookie(w.id, 'on')
+	return response	
 
 def question(request):
     q_id = 0

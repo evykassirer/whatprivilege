@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
     url(r'^question/$', views.question, name='question'),
     url(r'^instructions/$', views.instructions, name='instructions'),
-    url(r'^workshop-code/$', views.makeWorkshop, name='workshop'),   
+    url(r'^workshop-code/$', views.makeWorkshop, name='workshop'), 
+    url(r'^workshop-code/(?P<code>[0-9a-zA-Z]+)/$', views.loadWorkshop),  
 # url(r'^answer/(number)/$', 'views.answer', name='answer')
 )
