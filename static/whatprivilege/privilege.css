@@ -19,3 +19,11 @@
 .italics {
 	font-style: italic;
 }
+
+.hidden {
+	display: none;
+}
+
+#next {
+	display: none;
+}
