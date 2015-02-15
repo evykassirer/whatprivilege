@@ -31,7 +31,10 @@ def question(request):
         return render_to_response('question.html', context) 
     else :
     	questions = Question.objects.order_by('pk')
-        return render_to_response('results.html',questions)
+    	context = {
+    		'questions': questions,
+    	}
+        return render_to_response('results.html', context)
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
