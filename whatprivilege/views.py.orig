@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from whatprivilege.models import Question
+#from whatprivilege.models import Question
 
 def home(request):
     #logics .... 
@@ -10,12 +10,17 @@ def instructions(request):
     return render_to_response('instructions.html',{})
 
 def question(request):
+<<<<<<< HEAD
     question = get_question()
 
     context = {
         'question': question,
     }
     return render_to_response('question.html', context) 
+=======
+    #logics...
+    return render_to_response('question.html', {"question":"Are you pumped?"}) 
+>>>>>>> c25ff1d1f5ee93b221ab0be80041558c9dc518ec
 
 def learned(request):
     #logics...
