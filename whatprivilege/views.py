@@ -21,7 +21,7 @@ def makeWorkshop(request):
 #            url=str(md5(str(uuid.uuid4())).hexdigest())        
         new_workshop = Workshop(urlCode=url)
         new_workshop.save()
-        qs = Question.objects
+        qs = Question.objects.all()
         for q in qs :
             wq = WorkshopQuestion(
                 workshopID= new_workshop.id,
