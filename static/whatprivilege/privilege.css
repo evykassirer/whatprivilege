@@ -48,6 +48,10 @@
 	display: none;
 }
 
+#bar {
+	display: none;
+}
+
 .inline {
 	display: inline;
 }

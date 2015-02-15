@@ -3,6 +3,7 @@ $(yes).on('click', function() {
 	$(next).show();	
 	$(yesno).val("yes");
 	$(skip).hide();
+	$(bar).show();
 });
 
 
@@ -11,4 +12,5 @@ $(no).on('click', function() {
 	$(next).show();	
 	$(yesno).val("no");
 	$(skip).hide();
+	$(bar).show();
 });
