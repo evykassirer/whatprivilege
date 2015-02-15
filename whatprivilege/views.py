@@ -10,6 +10,9 @@ def instructions(request):
     #logics....
     return render_to_response('instructions.html',{})
 
+def makeWorkshop(request):
+	return render_to_response('')
+
 def question(request):
     q_id = 0
     current_q = False
@@ -25,11 +28,11 @@ def question(request):
 	    elif answer == 'no':
 	        current_q.numberNo += 1
 	    current_q.save()
-        else :
-            # cookie was already set
+        else : # cookie was already set
             cookie_set = True
         q_id = current_q.id
     question = get_question(q_id)
+
     # most cases - load next question
     if question :
         context = {
@@ -40,6 +43,7 @@ def question(request):
         if not cookie_set and current_q :
             response.set_cookie(str(current_q.id), 'answered')
         return response
+
     # we have iterated through all questions
     else :
     	questions = Question.objects.order_by('pk')
@@ -50,6 +54,7 @@ def question(request):
         if not cookie_set and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
+
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})

@@ -7,3 +7,11 @@ class Question(models.Model):
 	numberYes=models.IntegerField()
 	numberNo=models.IntegerField()
 
+class Workshop(models.Model):
+	urlCode=models.TextField()
+
+class WorkshopQuestion(models.Model):
+	workshopID=models.IntegerField()
+	qID=models.IntegerField()
+	numberYes=models.IntegerField()
+	numberNo=models.IntegerField()
