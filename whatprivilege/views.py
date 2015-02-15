@@ -12,29 +12,43 @@ def instructions(request):
 
 def question(request):
     q_id = 1
+    cookie_set = False
     if request.method == 'POST':
         alldata = request.POST
         answer = alldata.get("yesno")
         current_q = Question.objects.get(id=alldata.get("qnumber"))
-        if answer == 'yes':
-        	current_q.numberYes += 1
-        elif answer == 'no':
-        	current_q.numberNo += 1
-        current_q.save()
+        # check if they have answered this question already
+        if not(request.COOKIES.has_key(current_q.id)) :
+        	cookie_set = True
+	        if answer == 'yes':
+	        	current_q.numberYes += 1
+	        elif answer == 'no':
+	        	current_q.numberNo += 1
+	        current_q.save()
+	    else:
+	        print "cookie set"
         q_id = current_q.id + 1
     question = get_question(q_id)
+    # most cases - load next question
     if question :
         context = {
              'question': question,
         } 
         context = RequestContext(request, context)
-        return render_to_response('question.html', context) 
+        response = render_to_response('question.html', context) 
+        if (not(cookie_set)) :
+            response.set_cookie(current_q.id, 'answered')
+        return response
+    # we have iterated through all questions
     else :
     	questions = Question.objects.order_by('pk')
     	context = {
     		'questions': questions,
     	}
-        return render_to_response('results.html', context)
+    	response = render_to_response('results.html', context) 
+        if (not(cookie_set)) :
+            response.set_cookie(current_q.id, 'answered')
+        return response
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
