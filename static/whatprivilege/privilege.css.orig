@@ -1,3 +1,8 @@
+.title {
+	padding-top: 5%;
+	background-color: #C285FF;
+}
+
 .center {
 	text-align: center;
 }
@@ -11,6 +16,7 @@
 	margin-top: 2em;
 }
 
+<<<<<<< HEAD
 .header { /* Static header banner. */
   text-align: center;
   top: 0px;
@@ -25,6 +31,8 @@
   border-color: rgb(0, 0, 0);
 }
 
+=======
 .italics {
 	font-style: italic;
 }
+>>>>>>> 461ebd0fd12cec930b4676fe28814c2d2ac6ea4b
