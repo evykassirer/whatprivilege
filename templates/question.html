@@ -15,10 +15,20 @@
       <div class="row">
           <input class="button" id="skip" type="submit" value="skip">
       </div>
-      <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
-      <input class="hidden" type="text" name="yesno" id="yesno" value="">
-      {% include 'animation.html' %}
-      <input class="button-primary" id="next" type="submit" value="Next">
+          <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
+          <input class="hidden" type="text" name="yesno" id="yesno" value="">
+     <div class="row">          
+        <input class="button-primary" id="next" type="submit" value="Next">
+      </div>
+      <div class="row spaced">
+          <div class="horizontal">
+            <div class="center fill" id="fill"><div id="bar" class="bar">&nbsp</div></div>
+          </div>
+      </div>
+      
+      <div class="row">
+       <h6 id="result">10% answered yes to this question</h6>
+      </div>
     </form>
   </div>
 

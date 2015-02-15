@@ -52,8 +52,16 @@
 	display: none;
 }
 
+#result {
+	display: none;
+}
+
 .inline {
 	display: inline;
+}
+
+.spaced {
+  margin-top: 1em;
 }
 
 .moveDown {
