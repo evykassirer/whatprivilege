@@ -17,17 +17,17 @@ def instructions(request):
 def makeWorkshop(request):
     if request.method == 'POST':
         url=str(md5(str(uuid.uuid4())).hexdigest())
-        while (Workshop.objects.filter(urlCode=url).exists()) :
-            url=str(md5(str(uuid.uuid4())).hexdigest())        
-        new_wokshop = Workshop(urlCode=url)
+#        while (Workshop and Workshop.objects and Workshop.objects.filter(urlCode=url).exists()) :
+#            url=str(md5(str(uuid.uuid4())).hexdigest())        
+        new_workshop = Workshop(urlCode=url)
         new_workshop.save()
         qs = Question.objects
         for q in qs :
             wq = WorkshopQuestion(
-                workshopID: new_workshop.id,
-                qID: q.id,
-                numberYes: 0,
-                numberNo: 0
+                workshopID= new_workshop.id,
+                qID= q.id,
+                numberYes= 0,
+                numberNo= 0
             )
             wq.save()
         context = {
