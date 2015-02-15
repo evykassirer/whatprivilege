@@ -1,21 +1,26 @@
+.left { 
+     text-align: left;
+     margin: 10px;
+}	
+
 .center {
 	text-align: center;
 }
 
 .intro{
-	margin-top: 5%;
+	margin-top: 20%;
 	line-height: 1;
 }
 
 .question {
-	margin-top: 2em;
+	margin-top: 25%;
 }
 
 .header { /* Static header banner. */
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
-  height: 50px; /* Height of fixed banner. */
+  height: 40px; /* Height of fixed banner. */
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
@@ -27,4 +32,33 @@
 
 .italics {
 	font-style: italic;
+}
+
+.hidden {
+	display: none;
+}
+
+#next {
+	display: none;
+}
+
+.inline {
+	display: inline;
+}
+
+.moveDown {
+	margin-top: 5%;
+}
+
+.moveApartLeft {
+	margin-left: 1%;
+}
+
+.body {
+	background-image: url("gplaypattern.png");
+	background-repeat: repeat-x;
+}
+
+.moveApartRight {
+	margin-right: 1%;
 }

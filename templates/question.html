@@ -1,60 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-{% load staticfiles %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}  
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>What Privilege?</title>
-  <meta name="description" content="Learn about privilege!">
-  <meta name="author" content="Evy, Anna, Joey">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="stylesheet" href={% static "whatprivilege/normalize.css" %}>
-<link rel="stylesheet" href="{% static "whatprivilege/skeleton.css" %}">
-<link rel="stylesheet" href="{% static "whatprivilege/privilege.css" %}">
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-</head>
-<body>
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container center">
+<div class="container center">
     <div class="row question">
       <h3>{{ question.questionText }}</h3>
     </div>
     <div class="row">
-      <div class="four columns">&nbsp</div>
-      <div class="four columns">
-        <button class="button-primary">Yes</button>
-        <button class="button-primary">No</button>
-      </div>
-      <div class="four columns"> &nbsp</div>
+          <button class="button-primary moveApartRight" id="yes">Yes</button>
+          <button class="button-primary moveApartLeft" id="no">No</button>
     </div>
-    <div class="row">
-      <div class="five columns">&nbsp</div>
-      <div class="two columns">
-        <button class="button">Skip</button>
+    <form action="/question/" method="post">
+      {% csrf_token %}
+      <div class="row">
+          <input class="button" type="submit" value="skip">
       </div>
-      <div class="five columns"> &nbsp</div>
-    </div>
-  </div>
+      <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
+      <input class="hidden" type="text" name="yesno" id="yesno" value="">
+      <input class="button-primary" id="next" type="submit" value="Next">
+    </form>
   </div>
 
-<!-- End Document
+<!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src={% static "whatprivilege/answer.js" %}></script>
+
+{% endblock %}
