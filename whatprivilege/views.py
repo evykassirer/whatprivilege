@@ -10,10 +10,24 @@ def instructions(request):
     return render_to_response('instructions.html',{})
 
 def question(request):
-    #logics...
-    return render_to_response('question.html', {"question":"test"}) 
+    question = get_question()
+
+    context = {
+        'question': question,
+    }
+    return render_to_response('question.html', context) 
 
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
+
+#-------------------- Helper Functions
+
+def get_question(previous=None):
+    question = None
+    if not previous:
+        question = Question.objects.order_by('pk').first()
+    else:
+        question = Question.objects.filter(id__gt=previous).first()
+    return question
 
