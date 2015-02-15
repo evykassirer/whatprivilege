@@ -1,7 +1,10 @@
 .left { 
      text-align: left;
-     margin: 15px;
 }	
+
+.icon {
+	margin-top: 10px;
+}
 
 .center {
 	text-align: center;
@@ -20,20 +23,33 @@
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
-  height: 50px; /* Height of fixed banner. */
+  height: 52px; /* Height of fixed banner. */
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
-  background-color: rgba(255, 255, 255, 0.85); /* Make banner slightly transparent. */
+  background-color: rgba(255,255,255, 0.5); /* Make banner slightly transparent. */
   border-bottom: solid;
   border-bottom-width: 1px;
-  border-color: rgb(0, 0, 0, 0.5);
+  border-color: #DBDBDB;
+}
+
+.under-banner {
+  margin-top: 50px;
+}
+
+.title {
+	color: rgb(143,13,143);
 }
 
 .banner {
        text-decoration: none;
        text-color: grey; 
-       color: grey;
+       color: #AFAFAF;
+}
+
+.banner img {
+  height: 32px;
+  margin: 10px;
 }
 
 .italics {
@@ -52,7 +68,15 @@
 	display: none;
 }
 
+#bar2 {
+	display: none;
+}
+
 #result {
+	display: none;
+}
+
+#result2 {
 	display: none;
 }
 
