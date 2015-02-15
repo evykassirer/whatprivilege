@@ -54,6 +54,10 @@
 	margin-left: 1%;
 }
 
+.body {
+	background-image: url("gplaypattern.png");
+}
+
 .moveApartRight {
 	margin-right: 1%;
 }
