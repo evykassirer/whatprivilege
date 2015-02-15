@@ -55,7 +55,8 @@
 }
 
 .body {
-	background-image: url("gplaypattern_@2X.png");
+	background-image: url("gplaypattern.png");
+	background-repeat: repeat-x;
 }
 
 .moveApartRight {
