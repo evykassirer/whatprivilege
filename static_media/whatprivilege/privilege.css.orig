@@ -1,26 +1,27 @@
-.left { 
-     text-align: left;
-     margin: 10px;
-}	
+.title {
+	padding-top: 5%;
+	background-color: #C285FF;
+}
 
 .center {
 	text-align: center;
 }
 
 .intro{
-	margin-top: 20%;
+	margin-top: 5%;
 	line-height: 1;
 }
 
 .question {
-	margin-top: 25%;
+	margin-top: 2em;
 }
 
+<<<<<<< HEAD
 .header { /* Static header banner. */
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
-  height: 40px; /* Height of fixed banner. */
+  height: 50px; /* Height of fixed banner. */
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
@@ -30,35 +31,8 @@
   border-color: rgb(0, 0, 0);
 }
 
+=======
 .italics {
 	font-style: italic;
 }
-
-.hidden {
-	display: none;
-}
-
-#next {
-	display: none;
-}
-
-.inline {
-	display: inline;
-}
-
-.moveDown {
-	margin-top: 5%;
-}
-
-.moveApartLeft {
-	margin-left: 1%;
-}
-
-.body {
-	background-image: url("gplaypattern.png");
-	background-repeat: repeat-x;
-}
-
-.moveApartRight {
-	margin-right: 1%;
-}
+>>>>>>> 461ebd0fd12cec930b4676fe28814c2d2ac6ea4b

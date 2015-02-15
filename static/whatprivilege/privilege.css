@@ -1,17 +1,74 @@
-.title {
-	padding-top: 5%;
-	background-color: #C285FF;
-}
+.left { 
+     text-align: left;
+     margin: 10px;
+}	
 
 .center {
 	text-align: center;
 }
 
 .intro{
-	margin-top: 5%;
+	margin-top: 20%;
 	line-height: 1;
 }
 
 .question {
-	margin-top: 2em;
+	margin-top: 25%;
+}
+
+.header { /* Static header banner. */
+  text-align: center;
+  top: 0px;
+  position: fixed; /* Keep banner fixed at top of page. */
+  height: 40px; /* Height of fixed banner. */
+  overflow: hidden;
+  width: 100%; /* Span banner across entire page. */
+  z-index: 100; /* Raise banner above other page content. */
+  background-color: rgba(255, 255, 255, 0.85); /* Make banner slightly transparent. */
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(0, 0, 0);
+}
+
+a:link {
+       text-decoration: none;
+       text-color: grey; 
+}
+
+a:active {
+       text-decoration: none;
+}
+
+
+.italics {
+	font-style: italic;
+}
+
+.hidden {
+	display: none;
+}
+
+#next {
+	display: none;
+}
+
+.inline {
+	display: inline;
+}
+
+.moveDown {
+	margin-top: 5%;
+}
+
+.moveApartLeft {
+	margin-left: 1%;
+}
+
+.body {
+	background-image: url("gplaypattern.png");
+	background-repeat: repeat-x;
+}
+
+.moveApartRight {
+	margin-right: 1%;
 }
