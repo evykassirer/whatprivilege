@@ -1,3 +1,8 @@
+.left { 
+     text-align: left;
+     margin: 10px;
+}	
+
 .center {
 	text-align: center;
 }
@@ -15,7 +20,7 @@
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
-  height: 50px; /* Height of fixed banner. */
+  height: 40px; /* Height of fixed banner. */
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
