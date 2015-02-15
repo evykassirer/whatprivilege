@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}  
+{% block content %}
 
 <div class="container center">
     <div class="row question">
@@ -17,6 +17,7 @@
       </div>
       <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
       <input class="hidden" type="text" name="yesno" id="yesno" value="">
+      {% include 'animation.html' %}
       <input class="button-primary" id="next" type="submit" value="Next">
     </form>
   </div>
@@ -25,5 +26,6 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src={% static "whatprivilege/answer.js" %}></script>
+<script src={% static "whatprivilege/animation.js" %}></script>
 
 {% endblock %}
