@@ -48,6 +48,10 @@
        color: #AFAFAF;
 }
 
+#logo {
+  height: 48px;
+}
+
 .italics {
 	font-style: italic;
 }
