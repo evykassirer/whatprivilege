@@ -1,51 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-{% load staticfiles %}
-
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>What Privilege?</title>
-  <meta name="description" content="Learn about privilege!">
-  <meta name="author" content="Evy, Anna, Joey">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="stylesheet" href={% static "whatprivilege/normalize.css" %}>
-<link rel="stylesheet" href="{% static "whatprivilege/skeleton.css" %}">
-<link rel="stylesheet" href="{% static "whatprivilege/privilege.css" %}">
-
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-</head>
-<body>
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="row title u-full-width center">
-    <h1>What Privilege?</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container center">
+  <div class="row intro">
+    <h5>Read the following questions and answer yes or no, based on your experiences.</h5>
+    <h5>Answer truthfully. You may skip questions if you wish.</h5>
+    <h5>Your answer to the following questions does not determine your worth as a person, it's just a reflection .... [edit this stuff later]</h5>
   </div>
-  <div class="container center">
-    <div class="row intro">
-      <h5>Read the following questions and answer yes or no, based on your experiences.</h5>
-      <h5>Answer truthfully. You may skip questions if you wish.</h5>
-      <h5>Your answer to the following questions does not determine your worth as a person, it's just a reflection .... [edit this stuff later]</h5>
-    </div>
-  <a class="button button-primary" href="/question">Begin</a>
-  </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+<a class="button button-primary" href="/question">Begin</a>
+</div>
+{% endblock %}
