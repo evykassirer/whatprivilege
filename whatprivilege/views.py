@@ -11,7 +11,7 @@ def instructions(request):
 
 def question(request):
     #logics...
-    return render_to_response('question.html', {"question":"test"}) 
+    return render_to_response('question.html', {"question":"Are you pumped?"}) 
 
 def learned(request):
     #logics...
