@@ -1,41 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-{% load staticfiles %}
-
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>What Privilege?</title>
-  <meta name="description" content="Learn about privilege!">
-  <meta name="author" content="Evy, Anna, Joey">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="stylesheet" href={% static "whatprivilege/normalize.css" %}>
-<link rel="stylesheet" href="{% static "whatprivilege/skeleton.css" %}">
-<link rel="stylesheet" href="{% static "whatprivilege/privilege.css" %}">
-
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-</head>
-<body>
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="row title u-full-width center">
-    <h1>What Privilege?</h1>
-  </div>
+{% extends 'base.html' %}
+{% block content %}
   <div class="container center">
     <div class="row intro">
       <h5 class="italics"> "The purpose of this activity is to learn to recognize how power and privilege can affect our lives even when we are not aware it is happening. The purpose is not to blame anyone for having more power or privilege or for receiving more help in achieving goals, but to have an opportunity to identify both obstacles and benefits experienced in our life." (<a href="http://www.albany.edu/ssw/efc/pdf/Module%205_1_Privilege%20Walk%20Activity.pdf">Source</a>)</h5>
@@ -46,8 +10,4 @@
     </div>
   <a class="button button-primary" href="/question">Begin</a>
   </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+{% endblock %}
