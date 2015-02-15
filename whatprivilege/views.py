@@ -23,12 +23,15 @@ def question(request):
         current_q.save()
         q_id = current_q.id + 1
     question = get_question(q_id)
-    context = {
-        'question': question,
-    } 
-    context = RequestContext(request, context)
-    return render_to_response('question.html', context) 
-
+    if question :
+        context = {
+             'question': question,
+        } 
+        context = RequestContext(request, context)
+        return render_to_response('question.html', context) 
+    else :
+    	questions = Question.objects.order_by('pk')
+        return render_to_response('results.html',{})
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
