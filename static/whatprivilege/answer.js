@@ -1,16 +1,24 @@
+function showResults() {
+    $(bar).show();
+    $(bar).animate({
+      width: 75,
+      borderWidth: 225,
+      }, 500, function() {
+        // Animation complete.
+      });
+    $(next).show();	
+    $(skip).hide();
+}
+
 $(yes).on('click', function() {
-	$(no).prop("disabled",true);
-	$(next).show();	
-	$(yesno).val("yes");
-	$(skip).hide();
-	$(bar).show();
+    showResults();
+    $(no).prop("disabled",true);
+    $(yesno).val("yes");
 });
 
 
 $(no).on('click', function() {
-	$(yes).prop("disabled",true);
-	$(next).show();	
-	$(yesno).val("no");
-	$(skip).hide();
-	$(bar).show();
+    showResults();
+    $(yes).prop("disabled",true);
+    $(yesno).val("no");
 });
