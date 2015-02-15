@@ -1,6 +1,6 @@
 .left { 
      text-align: left;
-     margin: 10px;
+     margin: 15px;
 }	
 
 .center {
@@ -71,12 +71,11 @@
 .moveApartLeft {
 	margin-left: 1%;
 }
-/*
-.body {
+
+.background {
 	background-image: url("gplaypattern.png");
-	background-repeat: repeat-x;
+	/*background-repeat: repeat-x; */
 }
-*/
 .moveApartRight {
 	margin-right: 1%;
 }

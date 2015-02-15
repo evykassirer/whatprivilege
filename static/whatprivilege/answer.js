@@ -1,10 +1,11 @@
 function showResults() {
+    var percentYes = $(result).data('percentYes');
     $(bar).show();
     $(fill).animate({
       width: '100%',
     }, 500, function () {});
     $(bar).animate({
-      width: '70%',
+      width: percentYes.toString() + '%',
       //borderWidth: 30,
       //marginLeft: '33%',
       }, 500, function() {
