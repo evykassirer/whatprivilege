@@ -13,7 +13,7 @@
 }
 
 .question {
-	margin-top: 2em;
+	margin-top: 25%;
 }
 
 .header { /* Static header banner. */
@@ -40,4 +40,20 @@
 
 #next {
 	display: none;
+}
+
+.inline {
+	display: inline;
+}
+
+.moveDown {
+	margin-top: 5%;
+}
+
+.moveApartLeft {
+	margin-left: 1%;
+}
+
+.moveApartRight {
+	margin-right: 1%;
 }
