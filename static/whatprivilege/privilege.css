@@ -36,7 +36,6 @@
 
 .footer {
   text-align: center;
-  text-color: grey;
   bottom: 0px;
   background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
@@ -46,8 +45,7 @@
   border-color: #DBDBDB;
 }
 .footer > h6, a {
-  text-color: grey;
-  color: grey;
+  color: #222;
   margin-bottom: 2px;
 }
 .footer > h6 > img {

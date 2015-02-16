@@ -3,7 +3,8 @@
 }	
 
 .icon {
-	margin-top: 10px;
+  margin-top: 10px;
+  text-align: right;
 }
 
 .center {
@@ -33,6 +34,23 @@
   border-color: #DBDBDB;
 }
 
+.footer {
+  text-align: center;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  width: 100%;
+  border-top: solid;
+  border-top-width: 1px;
+  border-color: #DBDBDB;
+}
+.footer > h6, a {
+  color: #222;
+  margin-bottom: 2px;
+}
+.footer > h6 > img {
+  height: 16px;
+}
 .under-banner {
   margin-top: 50px;
 }
@@ -48,8 +66,12 @@
 }
 
 .banner img {
-  height: 32px;
-  margin: 10px;
+  max-height: 32px;
+  max-width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10%;
 }
 
 .italics {
