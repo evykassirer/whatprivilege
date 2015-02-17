@@ -51,10 +51,10 @@ def question(request):
     q_id = None
     current_q = False
     cookie_set = False
-    workshop = -1
+    workshop = None
 
     if request.COOKIES.has_key("workshop") :
-        workshop = request.COOKIES["workshop"]
+        workshop = request.COOKIES["workshop"] or None
     if request.method == 'POST':
         alldata = request.POST
         answer = alldata.get("yesno")
@@ -62,17 +62,17 @@ def question(request):
         # check if they have answered this question already
         if not request.COOKIES.has_key(str(current_q.id)) :
             w = False
-            if workshop >= 0:
+            if workshop is not None:
                 w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=current_q.id).first()
             if answer == 'yes':
                 current_q.numberYes += 1
                 if w:
                     w.numberYes += 1
-	    elif answer == 'no':
-	        current_q.numberNo += 1
+    	    elif answer == 'no':
+    	        current_q.numberNo += 1
                 if w:
                     w.numberNo += 1
-	    current_q.save()
+    	    current_q.save()
             if w:
                 w.save()
                 
@@ -83,13 +83,17 @@ def question(request):
 
     # most cases - load next question
     if question :
+        question_number = get_question_number(question.id, workshop=workshop) or 1
+        question_total = get_question_total(workshop=workshop) or 1
         context = {
              'question': question,
              'percent_no': get_percent_no(question.numberYes, question.numberNo),
+             'question_number': question_number,
+             'question_total': question_total,
         }
-        if workshop >= 0:
-             w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=question.id).first()
-             context['workshop_percent_no'] = get_percent_no(w.numberYes, w.numberNo)
+        if workshop is not None:
+            w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=question.id).first()
+            context['workshop_percent_no'] = get_percent_no(w.numberYes, w.numberNo)
         context = RequestContext(request, context)
         response = render_to_response('question.html', context) 
         if not cookie_set and current_q :
@@ -105,7 +109,7 @@ def question(request):
 
     	context = {
     		'questions': questions,
-                'percent_no': 100,
+            'percent_no': None,
     	}
     	response = render_to_response('question.html', context) 
         if not cookie_set and current_q:
@@ -138,3 +142,14 @@ def get_percent_no(yes, no):
         float(no) / float(yes + no),
         2
     ) * 100)
+
+def get_question_total(workshop=None):
+    if workshop is not None:
+        return WorkshopQuestion.objects.filter(workshopID=workshop).count()
+    return Question.objects.all().count()
+
+def get_question_number(id, workshop=None):
+    if workshop is not None:
+        return WorkshopQuestion.objects.filter(
+            workshopID=workshop, id__lt=id).count() + 1
+    return Question.objects.filter(id__lt=id).count() + 1

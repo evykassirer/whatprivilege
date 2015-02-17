@@ -30,12 +30,9 @@
     </div>
     <form action="/question/" method="post">
       {% csrf_token %}
-      <div class="row">
-          <input class="button" id="skip" type="submit" value="skip">
-      </div>
           <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
           <input class="hidden" type="text" name="yesno" id="yesno" value="">
-      <div class="row">          
+      <div class="row spaced">          
         <input class="button-primary" id="next" type="submit" value="Next">
       </div>
       {% if workshop_percent_no >= 0%}
@@ -55,17 +52,16 @@
             <div class="center fill" id="fill"><div id="bar" class="bar">&nbsp</div></div>
           </div>
       </div>
-     <div class="row">
+      <div class="row">
        <h6 id="result" data-percent-yes="{{ percent_no }}">{{ percent_no }}% answered no to this question</h6>
       </div>
+      {% include 'progress.html' %}
     </form>
     {% endif %}
 </div>
-
 <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src={% static "whatprivilege/answer.js" %}></script>
-<script src={% static "whatprivilege/animation.js" %}></script>
 
 {% endblock %}

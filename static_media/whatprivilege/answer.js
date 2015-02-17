@@ -1,3 +1,5 @@
+var transitionSpeed = 400; // ms
+
 function showResults() {
     var percentYes = $(result).data('percentYes');
     $(bar).show();
@@ -11,7 +13,7 @@ function showResults() {
       }, 500, function() {
         // Animation complete.
       });
-    $(next).show();	
+    $(next).show();
     $(result).fadeIn("slow");
     $(skip).hide();
     workshopResults();
@@ -36,6 +38,7 @@ function workshopResults() {
 
 $(yes).on('click', function() {
     showResults();
+    $(no).hide(transitionSpeed);
     $(no).prop("disabled",true);
     $(yesno).val("yes");
 });
@@ -43,6 +46,7 @@ $(yes).on('click', function() {
 
 $(no).on('click', function() {
     showResults();
+    $(yes).hide(transitionSpeed);
     $(yes).prop("disabled",true);
     $(yesno).val("no");
 });
