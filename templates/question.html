@@ -30,10 +30,11 @@
             <button class="button-primary" id="no">No</button>
       </div>
     </div>
-    <form id="step2" class="highlight hidden" action="/question/" method="post">
+    <form class="highlight hidden" action="/question/" method="post">
       {% csrf_token %}
           <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
           <input class="hidden" type="text" name="yesno" id="yesno" value="">
+      <div id="step2">
       <div class="row spaced">          
         <input class="button-primary" id="next" type="submit" value="Next">
       </div>
@@ -57,6 +58,7 @@
       <div class="row">
        <h6 id="result" data-percent-yes="{{ percent_no }}">{{ percent_no }}% answered no to this question</h6>
       </div>
+  </div>
       {% include 'progress.html' %}
     </form>
     {% endif %}
