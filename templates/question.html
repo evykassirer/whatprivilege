@@ -30,7 +30,7 @@
             <button class="button-primary" id="no">No</button>
       </div>
     </div>
-    <form class="highlight hidden" action="/question/" method="post">
+    <form id="qform" class="highlight hidden" action="/question/" method="post">
       {% csrf_token %}
           <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
           <input class="hidden" type="text" name="yesno" id="yesno" value="">

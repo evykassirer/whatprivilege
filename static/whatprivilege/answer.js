@@ -13,6 +13,7 @@ function showResults() {
       }, 500, function() {
         // Animation complete.
       });
+    $(qform).show();
     $(next).show();
     $(step2).show();
     $(result).fadeIn("slow");
