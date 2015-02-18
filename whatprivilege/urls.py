@@ -9,3 +9,5 @@ urlpatterns = patterns('',
     url(r'^workshop-code/$', views.makeWorkshop, name='workshop'),   
     url(r'^workshop-code/(?P<code>[\da-zA-Z]+)/$', views.loadWorkshop),  
 )
+
+handler404 = "views.error404"

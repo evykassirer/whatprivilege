@@ -37,6 +37,7 @@
 .footer {
   text-align: center;
   bottom: 0px;
+  max-height: 48px;
   background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
   width: 100%;
@@ -115,7 +116,7 @@
 }
 
 .moveApartLeft {
-	margin-left: 1%;
+	/*margin-left: 1%;*/
 }
 
 .background {
@@ -123,5 +124,12 @@
 	/*background-repeat: repeat-x; */
 }
 .moveApartRight {
-	margin-right: 1%;
+	/*margin-right: 1%;*/
+}
+
+.progress {
+  right: 10px;
+  margin: 48px;
+  bottom: 0px;
+  position: fixed;
 }

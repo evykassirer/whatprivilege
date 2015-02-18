@@ -116,6 +116,11 @@ def question(request):
             response.set_cookie(str(current_q.id), 'answered')
         return response
 
+def error404(request):
+    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
 def learned(request):
     #logics...
     return render_to_response('learned.html', {})
