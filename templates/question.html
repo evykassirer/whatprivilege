@@ -4,7 +4,7 @@
 
 <div class="container center">
     {% if  questions %}
-    <table class="u-full-width under-banner">
+    <table class="under-banner highlight">
       <thead>
         <tr>
           <th>Question</th>
@@ -21,14 +21,16 @@
       </tbody>
     </table>
     {% else %}
-    <div class="row question">
-      <h3>{{ question.questionText }}</h3>
+    <div id="step1" class="highlight">
+      <div class="row question">
+        <h3>{{ question.questionText }}</h3>
+      </div>
+      <div class="row">
+            <button class="button-primary" id="yes">Yes</button>
+            <button class="button-primary" id="no">No</button>
+      </div>
     </div>
-    <div class="row">
-          <button class="button-primary moveApartRight" id="yes">Yes</button>
-          <button class="button-primary moveApartLeft" id="no">No</button>
-    </div>
-    <form action="/question/" method="post">
+    <form id="step2" class="highlight hidden" action="/question/" method="post">
       {% csrf_token %}
           <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
           <input class="hidden" type="text" name="yesno" id="yesno" value="">

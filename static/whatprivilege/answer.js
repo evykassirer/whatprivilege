@@ -13,8 +13,9 @@ function showResults() {
       }, 500, function() {
         // Animation complete.
       });
-    $(next).show();
+    $(step2).show();
     $(result).fadeIn("slow");
+    $(step1).removeClass('highlight');
     $(skip).hide();
     workshopResults();
 }

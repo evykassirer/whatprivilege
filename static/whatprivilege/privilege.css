@@ -11,9 +11,21 @@
 	text-align: center;
 }
 
-.intro{
+.intro {
 	margin-top: 20%;
-	line-height: 1;
+  margin-bottom: 20%;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.source {
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.right-border {
+  border-right: 1px;
+  border-color: #222;
 }
 
 .question {
@@ -28,42 +40,48 @@
   overflow: hidden;
   width: 100%; /* Span banner across entire page. */
   z-index: 100; /* Raise banner above other page content. */
-  background-color: rgba(255,255,255, 0.5); /* Make banner slightly transparent. */
+  background-color: rgba(255,255,255, 0.8); /* Make banner slightly transparent. */
   border-bottom: solid;
   border-bottom-width: 1px;
   border-color: #DBDBDB;
+}
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px 1px #DBDBDB; 
 }
 
 .footer {
   text-align: center;
   bottom: 0px;
   max-height: 48px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.4);
   position: fixed;
   width: 100%;
   border-top: solid;
   border-top-width: 1px;
-  border-color: #DBDBDB;
+  border-color: rgb(255, 255, 255);
 }
 .footer > h6, a {
-  color: #222;
+  color: #555;
   margin-bottom: 2px;
 }
 .footer > h6 > img {
   height: 16px;
 }
+
 .under-banner {
-  margin-top: 50px;
+  margin-top: 60px;
+  width: 100%;
 }
-
-/*.title {
-	color: rgb(143,13,143);
-}*/
-
-.banner {
-       text-decoration: none;
-       text-color: grey; 
-       color: #AFAFAF;
+.under-banner th {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.under-banner td {
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .banner img {
@@ -83,48 +101,16 @@
 	display: none;
 }
 
-#next {
-	display: none;
-}
-
-#bar {
-	display: none;
-}
-
-#bar2 {
-	display: none;
-}
-
-#result {
-	display: none;
-}
-
-#result2 {
-	display: none;
-}
-
 .inline {
 	display: inline;
 }
 
 .spaced {
-  margin-top: 1em;
-}
-
-.moveDown {
-	margin-top: 5%;
-}
-
-.moveApartLeft {
-	/*margin-left: 1%;*/
+  padding-top: 2em;
 }
 
 .background {
 	background-image: url("gplaypattern.png");
-	/*background-repeat: repeat-x; */
-}
-.moveApartRight {
-	/*margin-right: 1%;*/
 }
 
 .progress {
