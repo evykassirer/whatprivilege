@@ -63,10 +63,12 @@
   border-top-width: 1px;
   border-color: rgb(255, 255, 255);
 }
+
 .footer > h6, a {
   color: #555;
   margin-bottom: 2px;
 }
+
 .footer > h6 > img {
   height: 16px;
 }
