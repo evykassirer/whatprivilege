@@ -41,22 +41,22 @@
       {% if workshop_percent_no >= 0%}
       <div class="row spaced">
           <div class="horizontal">
-            <div class="center fill" id="fill2"><div id="bar2" class="bar">&nbsp</div></div>
+            <div class="center fill"><div class="bar" data-percent-yes="{{ workshop_percent_no }}">&nbsp</div></div>
           </div>
       </div>
       
       <div class="row">
-        <h6 id="result2" data-percent-yes="{{ workshop_percent_no }}">{{ workshop_percent_no }}% of your group answered no to this question</h6>
+        <h6 class="result">{{ workshop_percent_no }}% of your group answered no to this question</h6>
       </div>
       {% endif %} 
       
       <div class="row spaced">
           <div class="horizontal">
-            <div class="center fill" id="fill"><div id="bar" class="bar">&nbsp</div></div>
+            <div class="center fill"><div class="bar" data-percent-yes="{{ percent_no }}">&nbsp</div></div>
           </div>
       </div>
       <div class="row">
-       <h6 id="result" data-percent-yes="{{ percent_no }}">{{ percent_no }}% answered no to this question</h6>
+       <h6 class="result">{{ percent_no }}% answered no to this question</h6>
       </div>
   </div>
       {% include 'progress.html' %}
