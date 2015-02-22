@@ -1,54 +1,36 @@
 var transitionSpeed = 400; // ms
 
 function showResults() {
-    var percentYes = $(result).data('percentYes');
-    $(bar).show();
-    $(fill).animate({
+    $(".bar").show();
+    $(".fill").animate({
       width: '100%',
     }, 500, function () {});
-    $(bar).animate({
-      width: percentYes.toString() + '%',
-      //borderWidth: 30,
-      //marginLeft: '33%',
-      }, 500, function() {
+
+    $(".bar").each(function(i) {
+      $(this).animate({
+        width: $(this).data('percentYes').toString() + '%',
+        }, 500, function() {
         // Animation complete.
-      });
-    $(next).show();
+        });});
     $(step2).show();
-    $(result).fadeIn("slow");
+    $(".result").fadeIn("slow");
     $(step1).removeClass('highlight');
     $(skip).hide();
-    workshopResults();
 }
 
-function workshopResults() {
-    if ($("#bar2").length == 0) return;
-    var percentYes = $(result2).data('percentYes');
-    $(bar2).show();
-    $(fill2).animate({
-      width: '100%',
-    }, 500, function () {});
-    $(bar2).animate({
-      width: percentYes.toString() + '%',
-      //borderWidth: 30,
-      //marginLeft: '33%',
-      }, 500, function() {
-        // Animation complete.
-      });
-    $(result2).fadeIn("slow");
-}
-
-$(yes).on('click', function() {
+$(yes).on('click', function( event ) {
     showResults();
     $(no).hide(transitionSpeed);
     $(no).prop("disabled",true);
     $(yesno).val("yes");
+    event.preventDefault()
 });
 
 
-$(no).on('click', function() {
+$(no).on('click', function( event ) {
     showResults();
     $(yes).hide(transitionSpeed);
     $(yes).prop("disabled",true);
     $(yesno).val("no");
+    event.preventDefault()
 });

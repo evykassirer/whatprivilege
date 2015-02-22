@@ -9,30 +9,28 @@ function showResults() {
     $(".bar").each(function(i) {
       $(this).animate({
         width: $(this).data('percentYes').toString() + '%',
-      //borderWidth: 30,
-      //marginLeft: '33%',
         }, 500, function() {
         // Animation complete.
         });});
-    $(qform).show();
-    $(next).show();
     $(step2).show();
     $(".result").fadeIn("slow");
     $(step1).removeClass('highlight');
     $(skip).hide();
 }
 
-$(yes).on('click', function() {
+$(yes).on('click', function( event ) {
     showResults();
     $(no).hide(transitionSpeed);
     $(no).prop("disabled",true);
     $(yesno).val("yes");
+    event.preventDefault()
 });
 
 
-$(no).on('click', function() {
+$(no).on('click', function( event ) {
     showResults();
     $(yes).hide(transitionSpeed);
     $(yes).prop("disabled",true);
     $(yesno).val("no");
+    event.preventDefault()
 });

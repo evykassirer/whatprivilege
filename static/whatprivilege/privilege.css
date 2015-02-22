@@ -1,38 +1,78 @@
+
+/*
+ * Utility classes
+ */
+
 .left { 
-     text-align: left;
+  text-align: left;
 }	
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
 
 .icon {
   margin-top: 10px;
   text-align: right;
 }
 
-.center {
-	text-align: center;
+.hidden {
+  display: none;
 }
 
-.intro {
-	margin-top: 20%;
+.inline {
+  display: inline;
+}
+
+.spaced {
+  padding-top: 2em;
+}
+
+.italics {
+  font-style: italic;
+}
+
+/*
+ * Site visual appearance classes
+ */
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px 1px #DBDBDB;
+  margin-bottom: 4em;
+}
+
+.intro { /* Intro text box */
+  margin-top: 20%;
   margin-bottom: 20%;
   padding-left: 2em;
   padding-right: 2em;
 }
 
-.source {
+.source { /* Link to quote's source shouldn't be too distracting. */
   color: #555;
   font-size: 1.2rem;
 }
 
-.right-border {
-  border-right: 1px;
-  border-color: #222;
+.question { /* Question text content */
+  margin-top: 25%;
+  overflow: auto;
 }
 
-.question {
-	margin-top: 25%;
+.background {
+  background-image: url("gplaypatterndarker.png");
 }
 
-.header { /* Static header banner. */
+/* 
+ * Site layout classes
+ */
+
+.banner { /* Static header banner. */
   text-align: center;
   top: 0px;
   position: fixed; /* Keep banner fixed at top of page. */
@@ -46,10 +86,10 @@
   border-color: #DBDBDB;
 }
 
-.highlight {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
-  box-shadow: 0px 1px 1px 1px #DBDBDB; 
+.banner img {
+  max-height: 32px;
+  max-width: 80%;
+  margin: 10px;
 }
 
 .footer {
@@ -73,51 +113,22 @@
   height: 16px;
 }
 
-.under-banner {
+.under-banner { /* Shift container down below fixed-position banner. */
   margin-top: 60px;
   width: 100%;
 }
-.under-banner th {
-  padding-left: 2em;
-  padding-right: 2em;
-}
-.under-banner td {
-  padding-left: 2em;
-  padding-right: 2em;
+
+.separated {
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #DBDBDB;
 }
 
-.banner img {
-  max-height: 32px;
-  max-width: 80%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10%;
+.under-banner p {
+  overflow: auto; 
+  margin: 1em;
 }
 
-.italics {
-	font-style: italic;
-}
-
-.hidden {
-	display: none;
-}
-
-.inline {
-	display: inline;
-}
-
-.spaced {
-  padding-top: 2em;
-}
-
-.background {
-	background-image: url("gplaypatterndarker.png");
-}
-
-.progress {
-  right: 10px;
-  margin: 48px;
-  bottom: 0px;
-  position: fixed;
+.under-banner h5 {
+  margin: 1em;
 }

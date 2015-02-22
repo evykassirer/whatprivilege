@@ -4,63 +4,70 @@
 
 <div class="container center">
     {% if  questions %}
-    <table class="under-banner highlight">
-      <thead>
-        <tr>
-          <th>Question</th>
-          <th>Percent who answered no</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div class="under-banner highlight">
+      <div class="row">
+        <div class="six columns">
+          <h5>Question</h5>
+        </div>
+        <div class="six columns">
+          <h5>Percent who answered no</h5>
+        </div>
+      </div>
         {% for question in questions %}
-        <tr>
-          <td>{{ question.questionText }}</td>
-          <td>{{ question.percent }}</td>
+          <div class="row separated">
+            <div class="six columns">
+              <p>{{ question.questionText }}</p>
+            </div>
+            <div class="six columns">
+              <p>{{ question.percent }}</p>
+            </div>
+          </div>
         {% endfor %}
-        </tr>
-      </tbody>
-    </table>
-    {% else %}
-    <div id="step1" class="highlight">
-      <div class="row question">
-        <h3>{{ question.questionText }}</h3>
-      </div>
-      <div class="row">
-            <button class="button-primary" id="yes">Yes</button>
-            <button class="button-primary" id="no">No</button>
-      </div>
     </div>
-    <form id="qform" class="highlight hidden" action="/question/" method="post">
-      {% csrf_token %}
-          <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
-          <input class="hidden" type="text" name="yesno" id="yesno" value="">
-      <div id="step2">
-      <div class="row spaced">          
-        <input class="button-primary" id="next" type="submit" value="Next">
-      </div>
-      {% if workshop_percent_no >= 0%}
-      <div class="row spaced">
-          <div class="horizontal">
-            <div class="center fill"><div class="bar" data-percent-yes="{{ workshop_percent_no }}">&nbsp</div></div>
-          </div>
+    {% else %}
+    <div class="highlight">
+      <form id="qform" action="/question/" method="post">
+      <div id="step1">
+        <div class="row question">
+          <h3>{{ question.questionText }}</h3>
+        </div>
+        <div class="row">
+              <button class="button-primary" id="yes">Yes</button>
+              <button class="button-primary" id="no">No</button>
+              <input class="button" id="skip" type="submit" value="skip">
+        </div>
       </div>
       
-      <div class="row">
-        <h6 class="result">{{ workshop_percent_no }}% of your group answered no to this question</h6>
-      </div>
-      {% endif %} 
-      
-      <div class="row spaced">
-          <div class="horizontal">
-            <div class="center fill"><div class="bar" data-percent-yes="{{ percent_no }}">&nbsp</div></div>
+        {% csrf_token %}
+            <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
+            <input class="hidden" type="text" name="yesno" id="yesno" value="">
+        <div id="step2" class="hidden">
+            {% if workshop_percent_no >= 0%}
+              <div class="row spaced">
+                  <div class="horizontal">
+                    <div class="center fill"><div class="bar" data-percent-yes="{{ workshop_percent_no }}">&nbsp</div></div>
+                  </div>
+              </div>
+              
+              <div class="row">
+                <h6 class="result">{{ workshop_percent_no }}% of your group answered no to this question</h6>
+              </div>
+            {% endif %} 
+            
+            <div class="row spaced">
+                <div class="horizontal">
+                  <div class="center fill"><div class="bar" data-percent-yes="{{ percent_no }}">&nbsp</div></div>
+                </div>
+            </div>
+            <div class="row">
+              <h6 class="result">{{ percent_no }}% answered no to this question</h6>
+            </div>
+            <div class="row spaced">          
+          <input class="button-primary" id="next" type="submit" value="{{ question_number }}/{{ question_total }} | Next">
+        </div>
           </div>
-      </div>
-      <div class="row">
-       <h6 class="result">{{ percent_no }}% answered no to this question</h6>
-      </div>
-  </div>
-      {% include 'progress.html' %}
-    </form>
+      </form>
+    </div>
     {% endif %}
 </div>
 <!-- JS
