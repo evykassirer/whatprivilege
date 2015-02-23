@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container center">
-  	{% for q in questions %}
-  	<div> {{q.questionText}} </div>
-  	<div> #yes: {{ q.numberYes }}, #no: {{ q.numberNo }}</div>
-  	{% endfor %} 
+<div class="under-banner highlight">
+  <div class="row">
+    <div class="six columns">
+      <h5>Question</h5>
+    </div>
+    <div class="six columns">
+      <h5>Percent who answered no</h5>
+    </div>
   </div>
+    {% for question in questions %}
+      <div class="row separated">
+        <div class="six columns">
+          <p>{{ question.questionText }}</p>
+        </div>
+        <div class="six columns">
+          <p>{{ question.percent }}</p>
+        </div>
+      </div>
+    {% endfor %}
+</div>
 {% endblock %}

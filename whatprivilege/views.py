@@ -109,9 +109,8 @@ def question(request):
 
     	context = {
     		'questions': questions,
-            'percent_no': None,
     	}
-    	response = render_to_response('question.html', context) 
+    	response = render_to_response('results.html', context) 
         if not cookie_set and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response

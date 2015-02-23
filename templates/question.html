@@ -3,28 +3,6 @@
 {% block content %}
 
 <div class="container center">
-    {% if  questions %}
-    <div class="under-banner highlight">
-      <div class="row">
-        <div class="six columns">
-          <h5>Question</h5>
-        </div>
-        <div class="six columns">
-          <h5>Percent who answered no</h5>
-        </div>
-      </div>
-        {% for question in questions %}
-          <div class="row separated">
-            <div class="six columns">
-              <p>{{ question.questionText }}</p>
-            </div>
-            <div class="six columns">
-              <p>{{ question.percent }}</p>
-            </div>
-          </div>
-        {% endfor %}
-    </div>
-    {% else %}
     <div class="highlight">
       <form id="qform" action="/question/" method="post">
       <div id="step1">
@@ -68,7 +46,6 @@
           </div>
       </form>
     </div>
-    {% endif %}
 </div>
 <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
