@@ -83,8 +83,8 @@ def question(request):
 
     # most cases - load next question
     if question :
-        question_number = get_question_number(question.id, workshop=workshop) or 1
-        question_total = get_question_total(workshop=workshop) or 1
+        question_number = get_question_number(question.id) or 1
+        question_total = get_question_total() or 1
         context = {
              'question': question,
              'percent_no': get_percent_no(question.numberYes, question.numberNo),
@@ -109,9 +109,8 @@ def question(request):
 
     	context = {
     		'questions': questions,
-            'percent_no': None,
     	}
-    	response = render_to_response('question.html', context) 
+    	response = render_to_response('results.html', context) 
         if not cookie_set and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
@@ -143,13 +142,8 @@ def get_percent_no(yes, no):
         2
     ) * 100)
 
-def get_question_total(workshop=None):
-    if workshop is not None:
-        return WorkshopQuestion.objects.filter(workshopID=workshop).count()
+def get_question_total():
     return Question.objects.all().count()
 
-def get_question_number(id, workshop=None):
-    if workshop is not None:
-        return WorkshopQuestion.objects.filter(
-            workshopID=workshop, id__lt=id).count() + 1
+def get_question_number(id):
     return Question.objects.filter(id__lt=id).count() + 1
