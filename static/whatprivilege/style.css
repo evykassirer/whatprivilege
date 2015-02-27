@@ -1,0 +1,22 @@
+/*
+ * Site visual style 
+ */
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  top: 53px;
+  margin-top 2rem;
+  padding: 2rem;
+  box-shadow: 0px 1px 1px 1px #DBDBDB;
+}
+
+.source { /* Link to quote's source shouldn't be too distracting. */
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.background {
+  background-image: url("gplaypatterndarker.png");
+}
+

@@ -8,7 +8,7 @@ function showResults() {
 
     $(".bar").each(function(i) {
       $(this).animate({
-        width: $(this).data('percentYes').toString() + '%',
+        width: $(this).data('percentNo').toString() + '%',
         }, 500, function() {
         // Animation complete.
         });});
