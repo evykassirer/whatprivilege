@@ -1,0 +1,43 @@
+/*
+ * Utility classes
+ */
+
+.left { 
+  text-align: left;
+}	
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.bottom-right {
+  position: fixed;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.icon {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}
+
+.italics {
+  font-style: italic;
+}
+
+

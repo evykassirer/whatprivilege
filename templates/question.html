@@ -3,16 +3,24 @@
 {% block content %}
 
 <div class="container center">
-    <div class="highlight">
+    <div class="highlight middle">
       <form id="qform" action="/question/" method="post">
       <div id="step1">
         <div class="row question">
-          <h3>{{ question.questionText }}</h3>
+            <div class="twelve columns">
+                <h4>{{ question.questionText }}</h4>
+            </div>
         </div>
         <div class="row">
+            <div class="twelve columns">
               <button class="button-primary" id="yes">Yes</button>
               <button class="button-primary" id="no">No</button>
+            <div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
               <input class="button" id="skip" type="submit" value="skip">
+            </div>
         </div>
       </div>
       
@@ -22,30 +30,43 @@
         <div id="step2" class="hidden">
             {% if workshop_percent_no >= 0%}
               <div class="row spaced">
+                <div class="twelve columns">
                   <div class="horizontal">
                     <div class="center fill"><div class="bar" data-percent-no="{{ workshop_percent_no }}">&nbsp</div></div>
+                    </div>
                   </div>
               </div>
               
               <div class="row">
-                <h6 class="result">{{ workshop_percent_no }}% of your group answered no to this question</h6>
+                <div class="twelve columns">
+                    <h6 class="result">{{ workshop_percent_no }}% of your group answered no to this question</h6>
+                <div>
               </div>
             {% endif %} 
             
             <div class="row spaced">
-                <div class="horizontal">
-                  <div class="center fill"><div class="bar" data-percent-no="{{ percent_no }}">&nbsp</div></div>
-                </div>
+                <div class="twelve columns">
+                    <div class="horizontal">
+                        <div class="center fill"><div class="bar" data-percent-no="{{ percent_no }}">&nbsp</div></div>
+                    </div>
+                <div>
             </div>
             <div class="row">
-              <h6 class="result">{{ percent_no }}% answered no to this question</h6>
+                <div class="twelve columns">
+                    <h6 class="result">{{ percent_no }}% answered no to this question</h6>
+                </div>
             </div>
             <div class="row spaced">          
-          <input class="button-primary" id="next" type="submit" value="{{ question_number }}/{{ question_total }} | Next">
-        </div>
+                <div class="twelve columns">
+                    <input class="button-primary" id="next" type="submit" value="Next">
+                </div>
+            </div>
           </div>
       </form>
     </div>
+  </div>
+<div class="row">
+ <h4 class="bottom-right">Question {{ question_number }}/{{ question_total }}</h4>
 </div>
 <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
