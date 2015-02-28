@@ -8,8 +8,10 @@
     <div class="highlight middle">
         <form id="qform" action="/question/" method="post">
             {% csrf_token %}
+            <input class="hidden" type="text" name="yesno" id="yesno" value="">
             {% if question_number == 0 %}
             <div class="g-recaptcha" data-sitekey="6LcYywITAAAAAOdCibQXkwS7jPdJDxUL8nQiAcJ0"></div>
+            <input class="hidden" type="text" name="qnumber" value="">
             <input class="button-primary" type="submit" value="Next">
             {% else %}
             <div id="step1">
@@ -31,7 +33,6 @@
                 </div>
             </div>
             <input class="hidden" type="text" name="qnumber" value="{{ question.id }}">
-            <input class="hidden" type="text" name="yesno" id="yesno" value="">
             <div id="step2" class="hidden">
                 {% if workshop_percent_no >= 0 %}
                     {% include "bar.html" with percent_no=workshop_percent_no %}
@@ -47,9 +48,11 @@
         </form>
     </div>
 </div>
+{% if question_number != 0 %}
 <div class="row">
     <h4 class="bottom-right">Question {{ question_number }}/{{ question_total }}</h4>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block script %}

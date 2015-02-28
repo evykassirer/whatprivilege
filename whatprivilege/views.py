@@ -55,14 +55,22 @@ def question(request):
 
     if request.COOKIES.has_key("workshop") :
         workshop = request.COOKIES["workshop"] or None
+    
     if request.method != 'POST':
-        
-    else :
-        alldata = request.POST
+        question_number = 0
+        context = {
+             'question_number': question_number,
+        }
+        context = RequestContext(request, context)
+        response = render_to_response('question.html', context) 
+        return response        
+    
+    alldata = request.POST
+    if alldata.get("qnumber") != "": 
         answer = alldata.get("yesno")
         current_q = Question.objects.get(id=alldata.get("qnumber"))
-        # check if they have answered this question already
-        if not request.COOKIES.has_key(str(current_q.id)) :
+        # check if they have not answered this question already
+        if not request.COOKIES.has_key(str(current_q.id)) and current_q != 0 :
             w = False
             if workshop is not None:
                 w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=current_q.id).first()
@@ -77,7 +85,7 @@ def question(request):
     	    current_q.save()
             if w:
                 w.save()         
-        else : # cookie was already set
+        else : # cookie was already set, or we just posted from the empty form
             cookie_set = True
         q_id = current_q.id
     question = get_question(q_id)
