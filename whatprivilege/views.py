@@ -55,7 +55,9 @@ def question(request):
 
     if request.COOKIES.has_key("workshop") :
         workshop = request.COOKIES["workshop"] or None
-    if request.method == 'POST':
+    if request.method != 'POST':
+        
+    else :
         alldata = request.POST
         answer = alldata.get("yesno")
         current_q = Question.objects.get(id=alldata.get("qnumber"))
@@ -74,8 +76,7 @@ def question(request):
                     w.numberNo += 1
     	    current_q.save()
             if w:
-                w.save()
-                
+                w.save()         
         else : # cookie was already set
             cookie_set = True
         q_id = current_q.id

@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{% block head %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
 {% block content %}
 <div class="container center">
     <div class="highlight middle">
         <form id="qform" action="/question/" method="post">
             {% csrf_token %}
+            {% if question_number == 0 %}
+            <div class="g-recaptcha" data-sitekey="6LcYywITAAAAAOdCibQXkwS7jPdJDxUL8nQiAcJ0"></div>
+            <input class="button-primary" type="submit" value="Next">
+            {% else %}
             <div id="step1">
                 <div class="row question">
                     <div class="twelve columns">
@@ -36,6 +43,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </form>
     </div>
 </div>
