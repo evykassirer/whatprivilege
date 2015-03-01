@@ -1,149 +1,141 @@
+"""All request-handling logic for whatprivilege app."""
+from django.http import Http404
 from django.shortcuts import render_to_response
-from whatprivilege.models import Question
-from whatprivilege.models import WorkshopQuestion
-from whatprivilege.models import Workshop
 from django.template import RequestContext
-import uuid
-from md5 import md5
+
+from whatprivilege.models import Question, Answer, Workshop
+from whatprivilege.helpers import (
+    get_next_question, get_question_number,
+    get_question_total, get_percent_no)
+
 
 def home(request):
-    #logics .... 
-    return render_to_response('home.html', {}) 
+    """
+    Main landing page.
+    """
+    return render_to_response('home.html')
 
-def instructions(request): 
-    #logics....
-    return render_to_response('instructions.html',{})
+
+def instructions(request):
+    """
+    Renders instructions page to brief the user before they start answering
+    questions.
+    """
+    return render_to_response('instructions.html')
+
 
 def makeWorkshop(request):
+    """
+    Creates a new workshop (which lets us render a custom link URL).
+    """
+    context = {}
     if request.method == 'POST':
-        url=str(md5(str(uuid.uuid4())).hexdigest())
-        while (Workshop.objects.filter(urlCode=url).exists()) :
-            url=str(md5(str(uuid.uuid4())).hexdigest())        
-        new_workshop = Workshop(urlCode=url)
+        new_workshop = Workshop()
         new_workshop.save()
-        qs = Question.objects.all()
-        for q in qs :
-            wq = WorkshopQuestion(
-                workshopID= new_workshop.id,
-                qID= q.id,
-                numberYes= 0,
-                numberNo= 0
-            )
-            wq.save()
+        new_workshop.setup()
         context = {
-            'url':'http://whatprivilege.me/workshop-code/'+url
+            'code': new_workshop.code,
         }
-        return render_to_response('workshop.html', context)
-    else:
-    	context = RequestContext(request, {})
-        return render_to_response('workshop.html', context)
+    return render_to_response(
+        'workshop.html',
+        RequestContext(request, context))
+
 
 def loadWorkshop(request, code):
-	response = render_to_response('home.html')
-	try:
-	    w = Workshop.objects.get(urlCode=code)
-	except Workshop.DoesNotExist:
-	    return response
-	response.set_cookie('workshop', str(w.id))
-	return response	
+    """
+    Sets the user's cookie to a workshop being accessed (after they click on
+    the custom link).
+    """
+    response = render_to_response('home.html')
+    try:
+        w = Workshop.objects.get(code=code)
+    except Workshop.DoesNotExist:
+        raise Http404('This workshop does not exist.')
+    response.set_cookie('workshop', str(w.code))
+    return response
+
 
 def question(request):
-    q_id = None
-    current_q = False
-    cookie_set = False
+    """
+    Main survey logic. Renders a question that the user should answer, based on
+    the state of the user's cookie and the user's workshop (if any).
+    """
+    current_q = None
     workshop = None
+    already_answered = False
 
-    if request.COOKIES.has_key("workshop") :
-        workshop = request.COOKIES["workshop"] or None
+    # Get the workshop from the user's cookie (if there is one).
+    workshop = None
+    if "workshop" in request.COOKIES:
+        workshop = Workshop.objects.get(
+            code=request.COOKIES["workshop"]
+        )
+
     if request.method == 'POST':
-        alldata = request.POST
-        answer = alldata.get("yesno")
-        current_q = Question.objects.get(id=alldata.get("qnumber"))
-        # check if they have answered this question already
-        if not request.COOKIES.has_key(str(current_q.id)) :
-            w = False
-            if workshop is not None:
-                w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=current_q.id).first()
-            if answer == 'yes':
-                current_q.numberYes += 1
-                if w:
-                    w.numberYes += 1
-    	    elif answer == 'no':
-    	        current_q.numberNo += 1
-                if w:
-                    w.numberNo += 1
-    	    current_q.save()
-            if w:
-                w.save()
-                
-        else : # cookie was already set
-            cookie_set = True
-        q_id = current_q.id
-    question = get_question(q_id)
+        # The user has submitted an answer to a question.
+        is_yes = request.POST.get("yesno") == 'yes'
+        current_q = Question.objects.get(
+                id=request.POST.get("qnumber"))
+        already_answered = str(current_q.id) in request.COOKIES
+        if not already_answered:
+            # The user has not answered this question yet. Count the response.
+            answer = Answer(yes=is_yes, question=current_q, workshop=workshop)
+            answer.save()
 
-    # most cases - load next question
-    if question :
-        question_number = get_question_number(question.id) or 1
-        question_total = get_question_total() or 1
+    question = get_next_question(
+            current_q.id if current_q else 0, workshop=workshop)
+
+    if question:
+        # Display the new question to the user.
+        question_number = get_question_number(question.id, workshop=workshop)
+        question_total = get_question_total(workshop=workshop)
         context = {
              'question': question,
-             'percent_no': get_percent_no(question.numberYes, question.numberNo),
+             'percent_no': get_percent_no(question),
              'question_number': question_number,
              'question_total': question_total,
         }
-        if workshop is not None:
-            w = WorkshopQuestion.objects.filter(workshopID=workshop, qID=question.id).first()
-            context['workshop_percent_no'] = get_percent_no(w.numberYes, w.numberNo)
-        context = RequestContext(request, context)
-        response = render_to_response('question.html', context) 
-        if not cookie_set and current_q :
+        if workshop:
+            context['workshop_percent_no'] = get_percent_no(question, workshop)
+
+        response = render_to_response(
+                'question.html',
+                RequestContext(request, context))
+        if not already_answered and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
 
-    # we have iterated through all questions
-    else :
-    	questions = Question.objects.order_by('pk')
+    else:
+        # We have iterated through all questions. Display the results page.
+        if workshop:
+            questions = workshop.questions.all()
+        else:
+            questions = Question.objects.filter(workshop_only=False)
 
         for question in questions:
-            question.percent = get_percent_no(question.numberYes, question.numberNo)
+            question.percent = get_percent_no(question, workshop)
 
-    	context = {
-    		'questions': questions,
-    	}
-    	response = render_to_response('results.html', context) 
-        if not cookie_set and current_q:
+        context = {
+            'questions': questions,
+        }
+        response = render_to_response('results.html', context)
+        if not already_answered and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
 
+
 def error404(request):
-    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    """
+    Render our custom 404 page.
+    """
+    response = render_to_response(
+        '404.html',
+        context_instance=RequestContext(request)
+    )
     response.status_code = 404
     return response
 
+
 def learned(request):
-    #logics...
+    """Stub."""
     return render_to_response('learned.html', {})
-
-#-------------------- Helper Functions
-
-def get_question(previous=None):
-    question = None
-    if not previous:
-        question = Question.objects.order_by('pk').first()
-    else:
-        question = Question.objects.filter(id__gt=previous).first()
-    return question
-
-def get_percent_no(yes, no):
-    if yes + no == 0:
-        return 0
-    return int(round(
-        float(no) / float(yes + no),
-        2
-    ) * 100)
-
-def get_question_total():
-    return Question.objects.all().count()
-
-def get_question_number(id):
-    return Question.objects.filter(id__lt=id).count() + 1

@@ -8,7 +8,7 @@
             <div id="step1">
                 <div class="row question">
                     <div class="twelve columns">
-                        <h4>{{ question.questionText }}</h4>
+                        <h4>{{ question.text }}</h4>
                     </div>
                 </div>
                 <div class="row">
@@ -27,7 +27,7 @@
             <input class="hidden" type="text" name="yesno" id="yesno" value="">
             <div id="step2" class="hidden">
                 {% if workshop_percent_no >= 0 %}
-                    {% include "bar.html" with percent_no=workshop_percent_no %}
+                    {% include "bar.html" with percent_no=workshop_percent_no workshop=True %}
                 {% endif %}
                 {% include "bar.html" with percent_no=percent_no %}
                 <div class="row spaced">

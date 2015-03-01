@@ -1,13 +1,14 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 from whatprivilege import views
-from django.conf.urls.static import static
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', views.home, name='home'),
     url(r'^question/$', views.question, name='question'),
     url(r'^instructions/$', views.instructions, name='instructions'),
-    url(r'^workshop-code/$', views.makeWorkshop, name='workshop'),   
-    url(r'^workshop-code/(?P<code>[\da-zA-Z]+)/$', views.loadWorkshop),  
+    url(r'^workshop-code/$', views.makeWorkshop, name='workshop'),
+    url(r'^(?P<code>[\da-z0-9]+)/$', views.loadWorkshop,
+        name='load_workshop'),
 )
 
 handler404 = "views.error404"

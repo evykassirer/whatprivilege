@@ -11,6 +11,10 @@
 </div>
 <div class="row">
     <div class="twelve columns">
-        <h6 class="result">{{ percent_no }}% answered no to this question</h6>
+      <h6 class="result">
+        {{ percent_no }}% 
+        {% if workshop %}of your workshop group answered no
+        {% else %}of total responses were no{% endif %}
+      </h6>
     </div>
 </div>
