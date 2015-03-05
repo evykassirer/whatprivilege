@@ -74,7 +74,7 @@ def question(request):
     if request.method == 'POST':
         # The user has submitted an answer to a question.
         is_yes = request.POST.get("yesno") == 'yes'
-        is_skip = request.POST.get("yesno") in ("yes", "no")
+        is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
         already_answered = str(current_q.id) in request.COOKIES
