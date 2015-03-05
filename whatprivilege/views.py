@@ -74,10 +74,11 @@ def question(request):
     if request.method == 'POST':
         # The user has submitted an answer to a question.
         is_yes = request.POST.get("yesno") == 'yes'
+        is_skip = request.POST.get("yesno") in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
         already_answered = str(current_q.id) in request.COOKIES
-        if not already_answered:
+        if not already_answered and not is_skip:
             # The user has not answered this question yet. Count the response.
             answer = Answer(yes=is_yes, question=current_q, workshop=workshop)
             answer.save()
