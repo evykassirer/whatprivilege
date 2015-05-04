@@ -67,7 +67,7 @@ class Answer(models.Model):
         """Returns whether or not the answer is no."""
         return not self.yes
 
-    yes = models.BooleanField()
+    yes = models.BooleanField(default=False)
     no = property(_no)
     question = models.ForeignKey('Question')
     workshop = models.ForeignKey('Workshop',  # Let this field be empty.

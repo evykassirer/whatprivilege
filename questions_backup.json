@@ -3,10 +3,8 @@
     "pk": 2, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 16, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "Your parents read to you as a child. ", 
-        "numberYes": 57, 
+        "text": "Your parents read to you as a child. ", 
         "helpLink": "https://whatprivilege.me/"
     }
 },
@@ -14,10 +12,8 @@
     "pk": 3, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 10, 
         "helpText": "https://docs.djangoproject.com/en/1.6/ref/settings/#databases", 
-        "questionText": "You can move around all day without a recurring injury flaring up.", 
-        "numberYes": 59, 
+        "text": "You can move around all day without a recurring injury flaring up.", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -25,10 +21,8 @@
     "pk": 4, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 19, 
         "helpText": "https://docs.djangoproject.com/en/1.6/ref/settings/#databases", 
-        "questionText": "You are not afraid of holding hands with your significant other(s) in public. ", 
-        "numberYes": 46, 
+        "text": "You are not afraid of holding hands with your significant other(s) in public. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -36,10 +30,8 @@
     "pk": 5, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 10, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You can find clothes in your size at a generic clothing store.", 
-        "numberYes": 59, 
+        "text": "You can find clothes in your size at a generic clothing store.", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -47,10 +39,8 @@
     "pk": 6, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 17, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You think of the police as someone you can call for help.", 
-        "numberYes": 52, 
+        "text": "You think of the police as someone you can call for help.", 
         "helpLink": "https://www.whatprivilege.com/"
     }
 },
@@ -58,10 +48,8 @@
     "pk": 7, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 33, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You studied the history and culture of your ethnic ancestors in primary and/or secondary school.", 
-        "numberYes": 30, 
+        "text": "You studied the history and culture of your ethnic ancestors in primary and/or secondary school.", 
         "helpLink": "https://www.whatprivilege.com/"
     }
 },
@@ -69,10 +57,8 @@
     "pk": 8, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 36, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You have been offered a job with the help of a friend or a family member. ", 
-        "numberYes": 26, 
+        "text": "You have been offered a job with the help of a friend or a family member. ", 
         "helpLink": "https://www.whatprivilege.com/"
     }
 },
@@ -80,10 +66,8 @@
     "pk": 9, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 25, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You can walk home at night without fear of being in danger.", 
-        "numberYes": 36, 
+        "text": "You can walk home at night without fear of being in danger.", 
         "helpLink": "https://www.whatprivilege.com/"
     }
 },
@@ -91,10 +75,8 @@
     "pk": 10, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 12, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You can see a doctor when you need to. ", 
-        "numberYes": 60, 
+        "text": "You can see a doctor when you need to. ", 
         "helpLink": "https://www.whatprivilege.com/"
     }
 },
@@ -102,10 +84,8 @@
     "pk": 11, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 21, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You commonly see people of your race, ethnicity, gender, sexual orientation, or ability positively portrayed in the media. ", 
-        "numberYes": 30, 
+        "text": "You commonly see people of your race, ethnicity, gender, sexual orientation, or ability positively portrayed in the media. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -113,10 +93,8 @@
     "pk": 12, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 19, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You have never had to use a back or side entrance to a building or been banned from an event because the main entrance was inaccessible to you. ", 
-        "numberYes": 27, 
+        "text": "You have never had to use a back or side entrance to a building or been banned from an event because the main entrance was inaccessible to you. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -124,10 +102,8 @@
     "pk": 13, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 15, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "Professionals of your race, ethnicity, gender, sexual orientation, or ability have been positively discussed or publicized within the last month.", 
-        "numberYes": 26, 
+        "text": "Professionals of your race, ethnicity, gender, sexual orientation, or ability have been positively discussed or publicized within the last month.", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -135,10 +111,8 @@
     "pk": 14, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 20, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "There is a national holiday in the country that you live in that honours an aspect or an event of your religion. ", 
-        "numberYes": 18, 
+        "text": "There is a national holiday in the country that you live in that honours an aspect or an event of your religion. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -146,10 +120,8 @@
     "pk": 15, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 17, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You have always felt like your identity was well-described by categorical boxes on a form.  ", 
-        "numberYes": 25, 
+        "text": "You have always felt like your identity was well-described by categorical boxes on a form.  ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -157,10 +129,8 @@
     "pk": 16, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 23, 
         "helpText": "\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"", 
-        "questionText": "You can fall asleep easily once you've decided to fall asleep. ", 
-        "numberYes": 27, 
+        "text": "You can fall asleep easily once you've decided to fall asleep. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -168,10 +138,8 @@
     "pk": 17, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 32, 
         "helpText": "lorem ipsum", 
-        "questionText": "You have never been asked where you are \"really\" from. ", 
-        "numberYes": 14, 
+        "text": "You have never been asked where you are \"really\" from. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 },
@@ -179,10 +147,8 @@
     "pk": 18, 
     "model": "whatprivilege.question", 
     "fields": {
-        "numberNo": 2, 
         "helpText": "Lorem Ipsum", 
-        "questionText": "The gender on your official documents is correct. ", 
-        "numberYes": 15, 
+        "text": "The gender on your official documents is correct. ", 
         "helpLink": "https://www.whatprivilege.me/"
     }
 }
