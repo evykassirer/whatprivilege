@@ -1,19 +1,14 @@
 """Helper functions for whatprivilege app view logic."""
-from whatprivilege.models import Question, Answer
+from whatprivilege.models import Question, AnswerTally
 
 
-def get_next_question(previous=0, workshop=None):
+def get_next_question(previous=0):
     """
     Given the user's previously answered question id [if there is one], return
     the next question to be answered.
     """
     question = None
-    if workshop:
-        question = Question.objects.filter(
-                id__gt=previous, workshops=workshop).order_by('pk').first()
-    else:
-        question = Question.objects.filter(
-                id__gt=previous, workshop_only=False).order_by('pk').first()
+    question = Question.objects.filter(id__gt=previous).order_by('pk').first()
     return question
 
 
@@ -30,42 +25,30 @@ def calculate_percent_no(yes, no):
     ) * 100)
 
 
-def get_percent_no(question, workshop=None):
+def get_percent_no(question):
     """
-    Gets the percentage of people who answered no to a given question
-    [within a given workshop].
+    Gets the percentage of people who answered no to a given question.
     """
-    if workshop:
-        return calculate_percent_no(
-            Answer.objects.filter(
-                yes=True, question=question, workshop=workshop).count(),
-            Answer.objects.filter(
-                yes=False, question=question, workshop=workshop).count()
-        )
+
+    if not AnswerTally.objects.filter(question=question).exists():
+        return 0
+    answertally = AnswerTally.objects.get(question=question)
     return calculate_percent_no(
-        Answer.objects.filter(
-            yes=True, question=question).count(),
-        Answer.objects.filter(
-            yes=False, question=question).count()
+        answertally.num_yes,
+        answertally.num_no
     )
 
 
-def get_question_total(workshop=None):
+def get_question_total():
     """
-    Get the total number of questions the user has access to
-    [within a given workshop]
+    Get the total number of questions the user has access to.
     """
-    if workshop:
-        return Question.objects.filter(workshops=workshop).count() or 1
-    return Question.objects.filter(workshop_only=False).count() or 1
+    return Question.objects.count() or 1
 
 
-def get_question_number(id, workshop=None):
+def get_question_number(id):
     """
     Get the current question number that the user is seeing, as in they are on
-    'Question (number)/(Total)' [within a given workshop].
+    'Question (number)/(Total)'
     """
-    if workshop:
-        return Question.objects.filter(
-            workshops=workshop, id__lt=id).count() + 1
-    return Question.objects.filter(workshop_only=False, id__lt=id).count() + 1
+    return Question.objects.filter(id__lt=id).count() + 1

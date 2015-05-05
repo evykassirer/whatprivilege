@@ -1,7 +1,6 @@
 from django.contrib import admin
-from whatprivilege.models import Question, Answer, Workshop
+from whatprivilege.models import Question, AnswerTally
 # Register your models here.
 
 admin.site.register(Question)
-admin.site.register(Answer)
-admin.site.register(Workshop)
+admin.site.register(AnswerTally)
