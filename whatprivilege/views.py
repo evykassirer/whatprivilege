@@ -8,6 +8,20 @@ from whatprivilege.helpers import (
     get_next_question, get_question_number,
     get_question_total, get_percent_no)
 
+def show_results():
+    """
+    Displays the results page
+    """
+    questions = Question.objects.all()
+
+    for question in questions:
+        question.percent = get_percent_no(question)
+
+    context = {
+        'questions': questions,
+    }
+    return render_to_response('results.html', context)
+
 
 def home(request):
     """
@@ -29,6 +43,12 @@ def question(request):
     Main survey logic. Renders a question that the user should answer, based on
     the state of the user's cookie.
     """
+
+    # first check if we should be showing the results page instead 
+    # (if they have answered all the questions)
+    if request.COOKIES.has_key('show_results') and (request.COOKIES['show_results'] == 'yes'):
+        return show_results()
+
     current_q = None
     already_answered = False
 
@@ -69,16 +89,9 @@ def question(request):
         return response
 
     else:
-        # We have iterated through all questions. Display the results page.
-        questions = Question.objects.all()
-
-        for question in questions:
-            question.percent = get_percent_no(question)
-
-        context = {
-            'questions': questions,
-        }
-        response = render_to_response('results.html', context)
+        # We have iterated through all questions. Set a cookie for question completion and display the results page.
+        response = show_results()
+        response.set_cookie('show_results', 'yes')
         if not already_answered and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
