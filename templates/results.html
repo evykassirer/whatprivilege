@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <div class="highlight">
-  <div class="row">
-    <div class="six columns">
-      <h5>Question</h5>
-    </div>
-    <div class="six columns">
-      <h5>Percent who answered no</h5>
-    </div>
+  <div class="row center">
+    <div class="twelve columns">
+      <form id="reset" action="/" method="post">
+        {% csrf_token %}
+        <button class="button-primary" id="reset">Reset</button> <!-- kinda ugly spacing, Joey will fix!-->
+      </form>
+    <div>
   </div>
+
+  <div class="highlight">
+    <div class="row">
+      <div class="six columns">
+        <h5>Question</h5>
+      </div>
+      <div class="six columns">
+        <h5>Percent who answered no</h5>
+      </div>
+    </div>
     {% for question in questions %}
       <div class="row separated">
         <div class="six columns">
@@ -20,6 +29,6 @@
         </div>
       </div>
     {% endfor %}
-</div>
+  </div>
 </div>
 {% endblock %}

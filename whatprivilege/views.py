@@ -8,7 +8,7 @@ from whatprivilege.helpers import (
     get_next_question, get_question_number,
     get_question_total, get_percent_no)
 
-def show_results():
+def show_results(request):
     """
     Displays the results page
     """
@@ -20,14 +20,22 @@ def show_results():
     context = {
         'questions': questions,
     }
-    return render_to_response('results.html', context)
 
+    return render_to_response(
+                'results.html',
+                RequestContext(request, context))
 
 def home(request):
     """
     Main landing page.
     """
-    return render_to_response('home.html')
+    response = render_to_response('home.html')
+
+    # The user has just reset from the results page
+    if request.method == 'POST':
+        response.set_cookie('show_results', 'no')
+
+    return response
 
 
 def instructions(request):
@@ -47,7 +55,7 @@ def question(request):
     # first check if we should be showing the results page instead 
     # (if they have answered all the questions)
     if request.COOKIES.has_key('show_results') and (request.COOKIES['show_results'] == 'yes'):
-        return show_results()
+        return show_results(request)
 
     current_q = None
     already_answered = False
@@ -90,7 +98,7 @@ def question(request):
 
     else:
         # We have iterated through all questions. Set a cookie for question completion and display the results page.
-        response = show_results()
+        response = show_results(request)
         response.set_cookie('show_results', 'yes')
         if not already_answered and current_q:
             response.set_cookie(str(current_q.id), 'answered')
