@@ -1,17 +1,12 @@
+/*
+ * Module for defining the behaviour of our answering flow.
+ */
+
 var transitionSpeed = 400; // ms
 
 function showResults() {
     $(".bar").show();
-    $(".fill").animate({
-      width: '100%',
-    }, 500, function () {});
-
-    $(".bar").each(function(i) {
-      $(this).animate({
-        width: $(this).data('percentNo').toString() + '%',
-        }, 500, function() {
-        // Animation complete.
-        });});
+    animateBars();
     $(step2).show();
     $(".result").fadeIn("slow");
     $(step1).removeClass('highlight');

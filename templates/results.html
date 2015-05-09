@@ -1,34 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="container">
-  <div class="row center">
-    <div class="twelve columns">
-      <form id="reset" action="/" method="post">
-        {% csrf_token %}
-        <button class="button-primary" id="reset">Reset</button> <!-- kinda ugly spacing, Joey will fix!-->
-      </form>
+  <div class="row center separated">
+        <div class="intro highlight">
+            <p>
+                Thank you for completing this excercise!
+            </p>
+            <p>
+                Feel free to take a moment to reflect on the results below.
+            </p>
+          <form id="reset" action="/" method="post">
+            {% csrf_token %}
+            <button class="button-primary" id="reset">Reset answers and restart</button>
+          </form>
+        </div>
     <div>
   </div>
 
-  <div class="highlight">
-    <div class="row">
+    <div class="row highlight">
       <div class="six columns">
         <h5>Question</h5>
       </div>
       <div class="six columns">
-        <h5>Percent who answered no</h5>
+        <h5>Results</h5>
       </div>
     </div>
     {% for question in questions %}
-      <div class="row separated">
+      <div class="row highlight separated">
         <div class="six columns">
           <p>{{ question.text }}</p>
         </div>
         <div class="six columns">
-          <p>{{ question.percent }}</p>
+            {% include "bar.html" with percent_no=question.percent %}
         </div>
       </div>
     {% endfor %}
-  </div>
 </div>
+{% endblock %}
+
+{% block script %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src={% static "whatprivilege/bar.js" %}></script>
+    <script src={% static "whatprivilege/results.js" %}></script>
+    {{ block.super }}
 {% endblock %}

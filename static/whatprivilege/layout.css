@@ -32,6 +32,10 @@
   overflow: auto;
 }
 
+.intro {
+  margin-bottom: 15px;
+}
+
 .footer {
   text-align: center;
   bottom: 0px;
