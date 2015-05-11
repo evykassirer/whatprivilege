@@ -29,13 +29,12 @@ def home(request):
     """
     Main landing page.
     """
-    response = render_to_response('home.html')
 
     # The user has just reset from the results page
     if request.method == 'POST':
-        response.set_cookie('show_results', 'no')
+        request.session['show_results'] = 'no'
 
-    return response
+    return render_to_response('home.html')
 
 
 def instructions(request):
@@ -54,7 +53,7 @@ def question(request):
 
     # first check if we should be showing the results page instead 
     # (if they have answered all the questions)
-    if request.COOKIES.has_key('show_results') and (request.COOKIES['show_results'] == 'yes'):
+    if request.session.get('show_results') == 'yes':
         return show_results(request)
 
     current_q = None
@@ -66,7 +65,7 @@ def question(request):
         is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
-        already_answered = str(current_q.id) in request.COOKIES
+        already_answered = request.session.get(str(current_q.id))
         if not already_answered and not is_skip:
             # The user has not answered this question yet. Count the response.
             answer = AnswerTally.objects.get_or_create(question=current_q)[0]
@@ -89,20 +88,18 @@ def question(request):
              'question_total': question_total,
         }
 
-        response = render_to_response(
+        if not already_answered and current_q:
+            request.session[str(current_q.id)] = 'answered'
+        return render_to_response(
                 'question.html',
                 RequestContext(request, context))
-        if not already_answered and current_q:
-            response.set_cookie(str(current_q.id), 'answered')
-        return response
 
     else:
         # We have iterated through all questions. Set a cookie for question completion and display the results page.
-        response = show_results(request)
-        response.set_cookie('show_results', 'yes')
+        request.session['show_results'] = 'yes'
         if not already_answered and current_q:
-            response.set_cookie(str(current_q.id), 'answered')
-        return response
+            request.session[str(current_q.id)] = 'answered'
+        return show_results(request)
 
 
 def error404(request):
