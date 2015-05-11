@@ -2,6 +2,7 @@
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.mail import send_mail
 
 from whatprivilege.models import Question, AnswerTally
 from whatprivilege.helpers import (
@@ -97,12 +98,29 @@ def question(request):
         return response
 
     else:
-        # We have iterated through all questions. Set a cookie for question completion and display the results page.
+        # We have iterated through all questions. 
+        # Set a cookie for question completion and display the results page.
         response = show_results(request)
         response.set_cookie('show_results', 'yes')
         if not already_answered and current_q:
             response.set_cookie(str(current_q.id), 'answered')
         return response
+
+def feedback(request):
+    """A form for the user to submit feedback to the developers, sent via email."""
+    if request.method == 'POST':
+        #the user has just submitted feedback, send email
+        content = request.POST.get("feedback")
+        email = request.POST.get("email")
+        name = request.POST.get("name")
+        if name != "":
+            content = content + "\n\nFROM: " + name
+        send_mail('**FEEDBACK FROM WHATPRIVILEGE**', content, email,
+            ['evy.kassirer@gmail.com'], fail_silently=False)
+        return render_to_response('home.html') #I think it would actually be better to show some kind of thank you note before returning the use back **
+
+    #otherwise, load the form
+    return render_to_response('feedback.html', RequestContext(request, {}))
 
 
 def error404(request):
