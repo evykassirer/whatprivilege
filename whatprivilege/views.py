@@ -101,6 +101,22 @@ def question(request):
             request.session[str(current_q.id)] = 'answered'
         return show_results(request)
 
+def feedback(request):
+    """A form for the user to submit feedback to the developers, sent via email."""
+    if request.method == 'POST':
+        #the user has just submitted feedback, send email
+        content = request.POST.get("feedback")
+        email = request.POST.get("email")
+        name = request.POST.get("name")
+        if name != "":
+            content = content + "\n\nFROM: " + name
+        send_mail('**FEEDBACK FROM WHATPRIVILEGE**', content, email,
+            ['evy.kassirer@gmail.com'], fail_silently=False)
+        return render_to_response('home.html') #I think it would actually be better to show some kind of thank you note before returning the use back **
+
+    #otherwise, load the form
+    return render_to_response('feedback.html', RequestContext(request, {}))
+
 
 def error404(request):
     """
