@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container center">
+    <div class="highlight middle">
+		<form id="feedbackform" action="/feedback/" method="post">
+		  {% csrf_token %}
+		  <div class="row">
+		    <div class="six columns">
+		      <label for="name">Name (optional)</label>
+		      <input class="u-full-width" type="text" placeholder="Feedback Hero" name="name">
+		    </div>
+		    <div class="six columns">
+		      <label for="email">Email (optional)</label>
+		      <input class="u-full-width" type="email" placeholder="example@mailbox.com" name="email">
+		    </div>
+		  </div>
+		  <label for="feedback">Feedback</label>
+		  <textarea class="u-full-width" placeholder="How did you find this experience? How can we make it better?" name="feedback"></textarea>
+		  <input class="button-primary" type="submit" value="Submit">
+		</form>
+	</div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}
