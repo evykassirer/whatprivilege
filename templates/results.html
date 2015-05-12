@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <div class="row center separated">
+    <div class="row center separated">
         <div class="intro highlight">
             <p>
                 Thank you for completing this excercise!
@@ -10,33 +10,36 @@
             <p>
                 Feel free to take a moment to reflect on the results below.
             </p>
-          <form id="reset" action="/" method="post">
-            {% csrf_token %}
-            <button class="button-primary" id="reset">Reset answers and restart</button>
-          </form>
+            <a class="button button-primary" href="/feedback">Send us feedback</a>
         </div>
-    <div>
-  </div>
 
-    <div class="row highlight">
-      <div class="six columns">
-        <h5>Question</h5>
-      </div>
-      <div class="six columns">
-        <h5>Results</h5>
-      </div>
+        <div class="row highlight">
+            <div class="six columns">
+                <h5>Question</h5>
+            </div>
+            <div class="six columns">
+                <h5>Results</h5>
+            </div>
+        </div>
+        {% for question in questions %}
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>{{ question.text }}</p>
+            </div>
+            <div class="six columns">
+                {% include "bar.html" with percent_no=question.percent %}
+            </div>
+        </div>
+        {% endfor %}
+    </div> 
+    <br>
+    <div class="center">
+        <form id="reset" action="/" method="post">
+        {% csrf_token %}
+        <button class="button" id="reset">Reset answers and restart</button>
+        <a class="button button-primary" href="/feedback">Send us feedback</a>
+        </form>
     </div>
-    {% for question in questions %}
-      <div class="row highlight separated">
-        <div class="six columns">
-          <p>{{ question.text }}</p>
-        </div>
-        <div class="six columns">
-            {% include "bar.html" with percent_no=question.percent %}
-        </div>
-      </div>
-    {% endfor %}
-</div>
 {% endblock %}
 
 {% block script %}
