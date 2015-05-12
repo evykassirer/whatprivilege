@@ -113,11 +113,11 @@ def feedback(request):
         content = request.POST.get("feedback")
         email = request.POST.get("email")
         name = request.POST.get("name")
-        if name != "":
-            content = content + "\n\nFROM: " + name
+        content = content + "\n\nThis email was sent from: " + name + \
+                            "\n\nYou can reply to this person at: " + email
         send_mail('**FEEDBACK FROM WHATPRIVILEGE**', content, email,
             ['evy.kassirer@gmail.com'], fail_silently=False)
-        return render_to_response('home.html') #I think it would actually be better to show some kind of thank you note before returning the use back **
+        return render_to_response('thankyou.html') 
 
     #otherwise, load the form
     return render_to_response('feedback.html', RequestContext(request, {}))
