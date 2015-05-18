@@ -1,5 +1,5 @@
 """Helper functions for whatprivilege app view logic."""
-from whatprivilege.models import Question, AnswerTally
+from whatprivilege.models import Question, Answer
 
 
 def get_next_question(previous=0):
@@ -29,13 +29,11 @@ def get_percent_no(question):
     """
     Gets the percentage of people who answered no to a given question.
     """
-
-    if not AnswerTally.objects.filter(question=question).exists():
-        return 0
-    answertally = AnswerTally.objects.get(question=question)
     return calculate_percent_no(
-        answertally.num_yes,
-        answertally.num_no
+        Answer.objects.filter(
+            yes=True, question=question).count(),
+        Answer.objects.filter(
+            yes=False, question=question).count()
     )
 
 

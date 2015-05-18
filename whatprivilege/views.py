@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.mail import send_mail
 
-from whatprivilege.models import Question, AnswerTally
+from whatprivilege.models import Question, Answer, Visitor
 from whatprivilege.helpers import (
     get_next_question, get_question_number,
     get_question_total, get_percent_no)
@@ -59,26 +59,30 @@ def question(request):
         return show_results(request)
 
     current_q = None
-    already_answered = False
+    visitor_id = None
+    new_visitor=False
 
     if request.method == 'POST':
         # The user has submitted an answer to a question.
+        # Get User ID
+        if request.COOKIES.has_key('visitor'):
+            visitor_id =  request.COOKIES['visitor']
+        else:   #if this is a new visitor
+            v = Visitor()
+            v.save()
+            visitor_id = v.id
+            new_visitor = True
+
         is_yes = request.POST.get("yesno") == 'yes'
         is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
-        already_answered = str(current_q.id) in request.COOKIES
-        if not already_answered and not is_skip:
+        if not Answer.objects.filter(question=current_q.id, visitor=visitor_id).exists() and not is_skip:
             # The user has not answered this question yet. Count the response.
-            answer = AnswerTally.objects.get_or_create(question=current_q)[0]
-            if(is_yes):
-                answer.num_yes += 1
-            else:
-                answer.num_no += 1
+            answer = Answer(yes=is_yes, question=current_q, visitor=visitor_id)
             answer.save()
 
     question = get_next_question(current_q.id if current_q else 0)
-
     if question:
         # Display the new question to the user.
         question_number = get_question_number(question.id)
@@ -89,12 +93,11 @@ def question(request):
              'question_number': question_number,
              'question_total': question_total,
         }
-
         response = render_to_response(
                 'question.html',
                 RequestContext(request, context))
-        if not already_answered and current_q:
-            response.set_cookie(str(current_q.id), 'answered')
+        if new_visitor :
+            response.set_cookie("visitor", visitor_id)
         return response
 
     else:
@@ -102,8 +105,8 @@ def question(request):
         # Set a cookie for question completion and display the results page.
         response = show_results(request)
         response.set_cookie('show_results', 'yes')
-        if not already_answered and current_q:
-            response.set_cookie(str(current_q.id), 'answered')
+        if new_visitor :
+            response.set_cookie("visitor", visitor_id)
         return response
 
 def feedback(request):

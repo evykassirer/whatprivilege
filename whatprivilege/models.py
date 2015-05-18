@@ -16,17 +16,29 @@ class Question(models.Model):
         return u'%s' % self.text
 
 
-class AnswerTally(models.Model):
+class Answer(models.Model):
     """
-    Answers to a question in terms of number responses that are 'yes' or 'no'.
+    Answer to a question as 'yes' or 'no'.
     """
 
-    num_yes = models.IntegerField(default=0)
-    num_no = models.IntegerField(default=0)
+    def _no(self):
+        """Returns whether or not the answer is no."""
+        return not self.yes
+
+    yes = models.BooleanField(default=False)
+    no = property(_no)
     question = models.ForeignKey('Question')
+    visitor = models.IntegerField() #the key of a Visitor object
+    date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         """Make Django print the answer's type whenever possible (including on
         the /admin/ page)."""
-        text = str(self.question) + ' ' + '#yes %d ' % self.num_yes + ' ' + '#no %d' %self.num_no
+        text = str(self.question) + ' '
+        text += 'Yes' if self.yes else 'No'
         return text
+
+class Visitor(models.Model):
+    """
+    A visitor to the application, whose answers are associated with the unique key of this object
+    """
