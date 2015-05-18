@@ -101,7 +101,7 @@ def question(request):
         return response
 
     else:
-        # We have iterated through all questions. 
+        # We have iterated through all questions.
         # Set a cookie for question completion and display the results page.
         response = show_results(request)
         response.set_cookie('show_results', 'yes')
@@ -136,8 +136,3 @@ def error404(request):
     )
     response.status_code = 404
     return response
-
-
-def learned(request):
-    """Stub."""
-    return render_to_response('learned.html', {})
