@@ -28,7 +28,7 @@ class Answer(models.Model):
     yes = models.BooleanField(default=False)
     no = property(_no)
     question = models.ForeignKey('Question')
-    visitor = models.IntegerField() #the key of a Visitor object
+    visitor = models.ForeignKey('Visitor')
     date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):

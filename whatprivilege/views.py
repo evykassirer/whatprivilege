@@ -59,27 +59,26 @@ def question(request):
         return show_results(request)
 
     current_q = None
-    visitor_id = None
+    visitor = None
     new_visitor=False
 
     if request.method == 'POST':
         # The user has submitted an answer to a question.
         # Get User ID
         if request.COOKIES.has_key('visitor'):
-            visitor_id =  request.COOKIES['visitor']
+            visitor =  Visitor.objects.get(id = request.COOKIES['visitor'])
         else:   #if this is a new visitor
-            v = Visitor()
-            v.save()
-            visitor_id = v.id
+            visitor = Visitor()
+            visitor.save()
             new_visitor = True
 
         is_yes = request.POST.get("yesno") == 'yes'
         is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
-        if not Answer.objects.filter(question=current_q.id, visitor=visitor_id).exists() and not is_skip:
+        if not Answer.objects.filter(question=current_q.id, visitor=visitor.id).exists() and not is_skip:
             # The user has not answered this question yet. Count the response.
-            answer = Answer(yes=is_yes, question=current_q, visitor=visitor_id)
+            answer = Answer(yes=is_yes, question=current_q, visitor=visitor.id)
             answer.save()
 
     question = get_next_question(current_q.id if current_q else 0)
