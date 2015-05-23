@@ -1,6 +1,5 @@
 """All request-handling logic for whatprivilege app."""
 from django.core.mail import send_mail
-from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -8,6 +7,7 @@ from whatprivilege.models import Question, Answer, Visitor
 from whatprivilege.helpers import (
     get_next_question, get_question_number,
     get_question_total, get_percent_no)
+
 
 def show_results(request):
     """
@@ -25,6 +25,7 @@ def show_results(request):
     return render_to_response(
                 'results.html',
                 RequestContext(request, context))
+
 
 def home(request):
     """
@@ -53,21 +54,22 @@ def question(request):
     the state of the user's cookie.
     """
 
-    # first check if we should be showing the results page instead 
+    # first check if we should be showing the results page instead
     # (if they have answered all the questions)
-    if request.COOKIES.has_key('show_results') and (request.COOKIES['show_results'] == 'yes'):
+    if 'show_results' in request.COOKIES.keys() and (
+            request.COOKIES['show_results'] == 'yes'):
         return show_results(request)
 
     current_q = None
     visitor = None
-    new_visitor=False
+    new_visitor = False
 
     if request.method == 'POST':
         # The user has submitted an answer to a question.
         # Get User ID
-        if request.COOKIES.has_key('visitor'):
-            visitor =  Visitor.objects.get(id = request.COOKIES['visitor'])
-        else:   #if this is a new visitor
+        if 'visitor' in request.COOKIES.keys():
+            visitor = Visitor.objects.get(id=request.COOKIES['visitor'])
+        else:   # if this is a new visitor
             visitor = Visitor()
             visitor.save()
             new_visitor = True
@@ -76,9 +78,11 @@ def question(request):
         is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
-        if not Answer.objects.filter(question=current_q.id, visitor=visitor.id).exists() and not is_skip:
+        if not Answer.objects.filter(
+                question=current_q.id, visitor=visitor
+                ).exists() and not is_skip:
             # The user has not answered this question yet. Count the response.
-            answer = Answer(yes=is_yes, question=current_q, visitor=visitor.id)
+            answer = Answer(yes=is_yes, question=current_q, visitor=visitor)
             answer.save()
 
     question = get_next_question(current_q.id if current_q else 0)
@@ -95,8 +99,8 @@ def question(request):
         response = render_to_response(
                 'question.html',
                 RequestContext(request, context))
-        if new_visitor :
-            response.set_cookie("visitor", visitor_id)
+        if new_visitor:
+            response.set_cookie("visitor", visitor.id)
         return response
 
     else:
@@ -104,24 +108,26 @@ def question(request):
         # Set a cookie for question completion and display the results page.
         response = show_results(request)
         response.set_cookie('show_results', 'yes')
-        if new_visitor :
-            response.set_cookie("visitor", visitor_id)
+        if new_visitor:
+            response.set_cookie("visitor", visitor.id)
         return response
 
+
 def feedback(request):
-    """A form for the user to submit feedback to the developers, sent via email."""
+    """A form for the user to submit feedback to the developers, sent via email.
+    """
     if request.method == 'POST':
-        #the user has just submitted feedback, send email
+        # the user has just submitted feedback, send email
         content = request.POST.get("feedback")
         email = request.POST.get("email")
         name = request.POST.get("name")
         content = content + "\n\nThis email was sent from: " + name + \
                             "\n\nYou can reply to this person at: " + email
         send_mail('**FEEDBACK FROM WHATPRIVILEGE**', content, email,
-            ['evy.kassirer@gmail.com'], fail_silently=False)
-        return render_to_response('thankyou.html') 
+                  ['evy.kassirer@gmail.com'], fail_silently=False)
+        return render_to_response('thankyou.html')
 
-    #otherwise, load the form
+    # otherwise, load the form
     return render_to_response('feedback.html', RequestContext(request, {}))
 
 
