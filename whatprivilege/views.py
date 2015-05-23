@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from whatprivilege.models import Question, AnswerTally
+from whatprivilege.models import Question, Answer, Visitor
 from whatprivilege.helpers import (
     get_next_question, get_question_number,
     get_question_total, get_percent_no)
@@ -30,12 +30,13 @@ def home(request):
     """
     Main landing page.
     """
+    response = render_to_response('home.html')
 
     # The user has just reset from the results page
     if request.method == 'POST':
-        request.session['show_results'] = 'no'
+        response.set_cookie('show_results', 'no')
 
-    return render_to_response('home.html')
+    return response
 
 
 def instructions(request):
@@ -54,30 +55,33 @@ def question(request):
 
     # first check if we should be showing the results page instead 
     # (if they have answered all the questions)
-    if request.session.get('show_results') == 'yes':
+    if request.COOKIES.has_key('show_results') and (request.COOKIES['show_results'] == 'yes'):
         return show_results(request)
 
     current_q = None
-    already_answered = False
+    visitor = None
+    new_visitor=False
 
     if request.method == 'POST':
         # The user has submitted an answer to a question.
+        # Get User ID
+        if request.COOKIES.has_key('visitor'):
+            visitor =  Visitor.objects.get(id = request.COOKIES['visitor'])
+        else:   #if this is a new visitor
+            visitor = Visitor()
+            visitor.save()
+            new_visitor = True
+
         is_yes = request.POST.get("yesno") == 'yes'
         is_skip = request.POST.get("yesno") not in ("yes", "no")
         current_q = Question.objects.get(
                 id=request.POST.get("qnumber"))
-        already_answered = request.session.get(str(current_q.id))
-        if not already_answered and not is_skip:
+        if not Answer.objects.filter(question=current_q.id, visitor=visitor.id).exists() and not is_skip:
             # The user has not answered this question yet. Count the response.
-            answer = AnswerTally.objects.get_or_create(question=current_q)[0]
-            if(is_yes):
-                answer.num_yes += 1
-            else:
-                answer.num_no += 1
+            answer = Answer(yes=is_yes, question=current_q, visitor=visitor.id)
             answer.save()
 
     question = get_next_question(current_q.id if current_q else 0)
-
     if question:
         # Display the new question to the user.
         question_number = get_question_number(question.id)
@@ -88,19 +92,21 @@ def question(request):
              'question_number': question_number,
              'question_total': question_total,
         }
-
-        if not already_answered and current_q:
-            request.session[str(current_q.id)] = 'answered'
-        return render_to_response(
+        response = render_to_response(
                 'question.html',
                 RequestContext(request, context))
+        if new_visitor :
+            response.set_cookie("visitor", visitor_id)
+        return response
 
     else:
-        # We have iterated through all questions. Set a cookie for question completion and display the results page.
-        request.session['show_results'] = 'yes'
-        if not already_answered and current_q:
-            request.session[str(current_q.id)] = 'answered'
-        return show_results(request)
+        # We have iterated through all questions.
+        # Set a cookie for question completion and display the results page.
+        response = show_results(request)
+        response.set_cookie('show_results', 'yes')
+        if new_visitor :
+            response.set_cookie("visitor", visitor_id)
+        return response
 
 def feedback(request):
     """A form for the user to submit feedback to the developers, sent via email."""
@@ -129,8 +135,3 @@ def error404(request):
     )
     response.status_code = 404
     return response
-
-
-def learned(request):
-    """Stub."""
-    return render_to_response('learned.html', {})
