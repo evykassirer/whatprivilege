@@ -32,3 +32,10 @@
   background-image: url("gplaypatterndarker.png");
 }
 
+@media only screen and (max-device-width: 480px) {
+
+  .results-title {
+    display:none;
+  }
+
+}
