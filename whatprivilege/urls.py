@@ -9,4 +9,4 @@ urlpatterns = patterns(
     url(r'^feedback/$', views.feedback, name='feedback'),
 )
 
-handler404 = "views.error404"
+handler404 = "whatprivilege.views.error404"
