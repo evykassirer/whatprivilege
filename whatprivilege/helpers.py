@@ -8,7 +8,12 @@ def get_next_question(previous=0):
     the next question to be answered.
     """
     question = None
-    question = Question.objects.filter(id__gt=previous).order_by('pk').first()
+    previous_question=get_or_none(Question, id=previous)
+    if previous_question:
+        previous_position=previous_question.position
+    else:
+        previous_position=0
+    question = Question.objects.filter(position__gt=previous_position).order_by('position').first()
     return question
 
 
@@ -50,3 +55,9 @@ def get_question_number(id):
     'Question (number)/(Total)'
     """
     return Question.objects.filter(id__lt=id).count() + 1
+
+def get_or_none(model, *args, **kwargs):
+    try:
+        return model.objects.get(*args, **kwargs)
+    except model.DoesNotExist:
+        return None
