@@ -8,7 +8,7 @@
                 Thank you for completing this excercise!
             </p>
             <p>
-                Feel free to take a moment to reflect on the results below.
+                For resources and discussion, click on the results below.
             </p>
             <a class="button button-primary" href="/feedback">Send us feedback</a>
         </div>
@@ -22,7 +22,8 @@
             </div>
         </div>
         {% for question in questions %}
-        <div class="row highlight separated">
+        <a style="display:block" href="http://whatprivilege.me/so_what?id={{question.id}}">
+        <div class="row highlight separated clickable-result">
             <div class="six columns">
                 <p>{{ question.text }}</p>
             </div>
@@ -30,6 +31,7 @@
                 {% include "bar.html" with percent_no=question.percent %}
             </div>
         </div>
+        </a>
         {% endfor %}
     </div>
     <br>

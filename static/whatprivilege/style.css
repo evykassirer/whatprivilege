@@ -32,6 +32,11 @@
   background-image: url("gplaypatterndarker.png");
 }
 
+.clickable-result:hover {
+    background-color: rgba(231, 251, 252, 0.9);
+    cursor: default;
+}
+
 @media only screen and (max-device-width: 480px) {
 
   .results-title {

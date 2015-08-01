@@ -7,6 +7,7 @@ urlpatterns = patterns(
     url(r'^question/$', views.question, name='question'),
     url(r'^instructions/$', views.instructions, name='instructions'),
     url(r'^feedback/$', views.feedback, name='feedback'),
+    url(r'^so_what*', views.so_what, name='so_what'),
 )
 
 handler404 = "views.error404"
