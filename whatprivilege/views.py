@@ -150,8 +150,9 @@ def so_what(request):
         return redirect('/')
     percent_no = get_percent_no(question)
     context = {
-        'question_negation': question.negation_statement,
+        'question_negation': 'do this later',#question.negation_statement,
         'percent_no': percent_no,
+        'current_path': request.build_absolute_uri(),
         # also send discussion objects
     }
     return render_to_response(
