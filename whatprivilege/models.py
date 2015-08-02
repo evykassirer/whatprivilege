@@ -6,8 +6,6 @@ class Question(models.Model):
     """
     A question to ask the user.
     """
-    # position determines the order in which questions are asked
-    position = models.IntegerField()
     text = models.TextField()
     help_text = models.TextField(blank=True)
     help_link = models.URLField(blank=True)
