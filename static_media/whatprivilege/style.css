@@ -32,10 +32,29 @@
   background-image: url("gplaypatterndarker.png");
 }
 
+.clickable-result:hover {
+    background-color: rgba(231, 251, 252, 0.9);
+    cursor: default;
+}
+
+.bignbold {
+  font-style: bold;
+  color: #33C3F0;
+}
+
+.sowhat {
+  margin-bottom: 5%;
+}
+
+
 @media only screen and (max-device-width: 480px) {
 
   .results-title {
     display:none;
   }
 
+  .sowhat{
+    text-align: center;
+  }
 }
+
