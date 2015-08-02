@@ -13,7 +13,7 @@ def show_results(request):
     """
     Displays the results page
     """
-    questions = Question.objects.all().order_by('position')
+    questions = Question.objects.all()
 
     for question in questions:
         question.percent = get_percent_no(question)
