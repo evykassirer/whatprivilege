@@ -143,18 +143,18 @@ def error404(request):
     response.status_code = 404
     return response
 
-def so_what(request):
+def discussion(request):
     q_id = request.GET.get("id")
     question = get_or_none(Question, id=q_id)
     if not question:
         return redirect('/')
     percent_no = get_percent_no(question)
     context = {
-        'question_negation': 'do this later',#question.negation_statement,
+        # maybe have another field that's a negation like 23% of users "cannot walk home feeling safe"
+        'question': question,
         'percent_no': percent_no,
         'current_path': request.build_absolute_uri(),
-        # also send discussion objects
     }
     return render_to_response(
-        'so_what.html',
+        'discussion.html',
         RequestContext(request, context))
