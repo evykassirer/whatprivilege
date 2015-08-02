@@ -8,7 +8,7 @@
                 Thank you for completing this excercise!
             </p>
             <p>
-                Feel free to take a moment to reflect on the results below.
+                For resources and discussion, click on the results below.
             </p>
             <a class="button button-primary" href="/feedback">Send us feedback</a>
         </div>
@@ -22,7 +22,8 @@
             </div>
         </div>
         {% for question in questions %}
-        <div class="row highlight separated">
+        <a style="display:block" href="/discussion?id={{question.id}}">
+        <div class="row highlight separated clickable-result">
             <div class="six columns">
                 <p>{{ question.text }}</p>
             </div>
@@ -30,6 +31,7 @@
                 {% include "bar.html" with percent_no=question.percent %}
             </div>
         </div>
+        </a>
         {% endfor %}
     </div>
     <br>
@@ -40,6 +42,36 @@
         <a class="button button-primary" href="/feedback">Send us feedback</a>
         </form>
     </div>
+
+    <br>
+    <br>
+
+    <div class="highlight">
+    <h1 class="center bignbold ">What can we do?</h1>
+
+    <div class="center">
+        <h6>Share your experiences and resources to help others explore privilege.<br>
+           If your comment is specific to one of the questions in the exercise, please click on it above.<br>
+           Through learning about others, we can build empathy and work towards equality.</h6>
+    </div>
+
+    <div>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'whatprivilege';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+</div>
+
+
 {% endblock %}
 
 {% block script %}

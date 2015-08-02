@@ -1,12 +1,13 @@
 """All request-handling logic for whatprivilege app."""
 from django.core.mail import send_mail
+from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from whatprivilege.models import Question, Answer, Visitor
 from whatprivilege.helpers import (
     get_next_question, get_question_number,
-    get_question_total, get_percent_no)
+    get_question_total, get_percent_no, get_or_none)
 
 
 def show_results(request):
@@ -141,3 +142,19 @@ def error404(request):
     )
     response.status_code = 404
     return response
+
+def discussion(request):
+    q_id = request.GET.get("id")
+    question = get_or_none(Question, id=q_id)
+    if not question:
+        return redirect('/')
+    percent_no = get_percent_no(question)
+    context = {
+        # maybe have another field that's a negation like 23% of users "cannot walk home feeling safe"
+        'question': question,
+        'percent_no': percent_no,
+        'current_path': request.build_absolute_uri(),
+    }
+    return render_to_response(
+        'discussion.html',
+        RequestContext(request, context))
