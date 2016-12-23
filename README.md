@@ -14,3 +14,11 @@ Coming soon:
 - tests for our code!
 - feedback box for more questions and other suggestions
 - moderated discussion page(s) 
+
+
+## Installation instructions (development)
+
+- edit django_project/sample_settings.py into settings.py
+- python manage.py migrate --run-syncdb
+- python manage.py loaddata data.json
+- python manage.py runserver
