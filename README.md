@@ -14,3 +14,18 @@ Coming soon:
 - tests for our code!
 - feedback box for more questions and other suggestions
 - moderated discussion page(s) 
+
+
+## Installation instructions (development)
+
+You will need django installed in your system (tested with django 1.10.3 and Python 2.7.13)
+
+rename `django_project/sample_settings.py` to `django_project/settings.py` (and you might want to edit some settings there, the SECRET_KEY at least)
+
+then run these commands:
+
+```bash
+python manage.py migrate --run-syncdb
+python manage.py loaddata data.json
+python manage.py runserver
+```
