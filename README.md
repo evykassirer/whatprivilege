@@ -6,6 +6,13 @@ http://whatprivilege.me is a web app version of a privilege walk, created at [De
 
 "The purpose of this activity is to learn to recognize how power and privilege can affect our lives even when we are not aware it is happening. The purpose is not to blame anyone for having more power or privilege or for receiving more help in achieving goals, but to have an opportunity to identify both obstacles and benefits experienced in our life." ([Source](http://www.albany.edu/ssw/efc/pdf/Module%205_1_Privilege%20Walk%20Activity.pdf))
 
+
+On April 28, 2017 I dumped the database into [a file](https://github.com/evykassirer/whatprivilege/blob/master/data_backup.json) and shut down the site. You are welcome to fork this repo and put it back online, if you give us acknowledgement. Here are some screenshots of what the site looks like:
+
+
+
+------
+
 Definitely let us know if you are interested in contributing!
 
 Coming soon:
