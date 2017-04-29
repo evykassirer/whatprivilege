@@ -1,7 +1,7 @@
 """All request-handling logic for whatprivilege app."""
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 
 from whatprivilege.models import Question, Answer, Visitor
@@ -23,16 +23,14 @@ def show_results(request):
         'questions': questions,
     }
 
-    return render_to_response(
-                'results.html',
-                RequestContext(request, context))
+    return render(request, 'results.html', context)
 
 
 def home(request):
     """
     Main landing page.
     """
-    response = render_to_response('home.html')
+    response = render(request, 'home.html', {})
 
     # The user has just reset from the results page
     if request.method == 'POST':
@@ -46,7 +44,7 @@ def instructions(request):
     Renders instructions page to brief the user before they start answering
     questions.
     """
-    return render_to_response('instructions.html')
+    return render(request, 'instructions.html', {})
 
 
 def question(request):
@@ -97,9 +95,7 @@ def question(request):
              'question_number': question_number,
              'question_total': question_total,
         }
-        response = render_to_response(
-                'question.html',
-                RequestContext(request, context))
+        response = render(request, 'question.html', context)
         if new_visitor:
             response.set_cookie("visitor", visitor.id)
         return response
@@ -126,20 +122,17 @@ def feedback(request):
                             "\n\nYou can reply to this person at: " + email
         send_mail('**FEEDBACK FROM WHATPRIVILEGE**', content, email,
                   ['evy.kassirer@gmail.com'], fail_silently=False)
-        return render_to_response('thankyou.html')
+        return render(request, 'thankyou.html', {})
 
     # otherwise, load the form
-    return render_to_response('feedback.html', RequestContext(request, {}))
+    return render(request, 'feedback.html', {})
 
 
 def error404(request):
     """
     Render our custom 404 page.
     """
-    response = render_to_response(
-        '404.html',
-        context_instance=RequestContext(request)
-    )
+    response = render(request, '404.html', {})
     response.status_code = 404
     return response
 
@@ -155,6 +148,4 @@ def discussion(request):
         'percent_no': percent_no,
         'current_path': request.build_absolute_uri(),
     }
-    return render_to_response(
-        'discussion.html',
-        RequestContext(request, context))
+    return render(request, 'discussion.html', context)

@@ -1,4 +1,5 @@
 *.pyc
 *whatprivilge/migrations/*
 *db.sqlite3*
-*settings*
+settings.py
+*~
