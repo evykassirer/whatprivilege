@@ -9,7 +9,15 @@ http://whatprivilege.me is a web app version of a privilege walk, created at [De
 
 On April 28, 2017 I dumped the database into [a file](https://github.com/evykassirer/whatprivilege/blob/master/data_backup.json) and shut down the site. You are welcome to fork this repo and put it back online, if you give us acknowledgement. Here are some screenshots of what the site looks like:
 
-![](./screenshots/front_page.png)
+![](screenshots/front_page.png)
+
+![](screenshots/second_page.png)
+
+![](screenshots/question.png)
+
+![](screenshots/after_answer.png)
+
+![](screenshots/end_page.png)
 
 ------
 
