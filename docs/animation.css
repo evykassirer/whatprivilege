@@ -1,0 +1,20 @@
+.bar {
+
+  /*text-align: center;
+  align: center;*/
+  width: 0px;
+  background: #33C3F0;
+  /*border-right: 0px solid grey;
+  border-width: 0px;*/
+}
+
+.fill {
+  width: 100%;
+  background: grey;
+}
+
+.horizontal {
+  margin-top: 2rem;
+  width: 50%;
+  margin-left: 25%;
+}

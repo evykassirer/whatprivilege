@@ -1,0 +1,134 @@
+
+/*
+ * Utility classes
+ */
+
+.left { 
+  text-align: left;
+}	
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.icon {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.inline {
+  display: inline;
+}
+
+.spaced {
+  padding-top: 2em;
+}
+
+.italics {
+  font-style: italic;
+}
+
+/*
+ * Site visual appearance classes
+ */
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px 1px #DBDBDB;
+  margin-bottom: 4em;
+}
+
+.intro { /* Intro text box */
+  margin-top: 20%;
+  margin-bottom: 20%;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.source { /* Link to quote's source shouldn't be too distracting. */
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.question { /* Question text content */
+  margin-top: 25%;
+  overflow: auto;
+}
+
+.background {
+  background-image: url("gplaypatterndarker.png");
+}
+
+/* 
+ * Site layout classes
+ */
+
+.banner { /* Static header banner. */
+  text-align: center;
+  top: 0px;
+  position: fixed; /* Keep banner fixed at top of page. */
+  height: 52px; /* Height of fixed banner. */
+  overflow: hidden;
+  width: 100%; /* Span banner across entire page. */
+  z-index: 100; /* Raise banner above other page content. */
+  background-color: rgba(255,255,255, 0.8); /* Make banner slightly transparent. */
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-color: #DBDBDB;
+}
+
+.banner img {
+  max-height: 32px;
+  max-width: 80%;
+  margin: 10px;
+}
+
+.footer {
+  text-align: center;
+  bottom: 0px;
+  max-height: 48px;
+  background-color: rgba(255, 255, 255, 0.4);
+  position: fixed;
+  width: 100%;
+  border-top: solid;
+  border-top-width: 1px;
+  border-color: rgb(255, 255, 255);
+}
+
+.footer > h6, a {
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.footer > h6 > img {
+  height: 16px;
+}
+
+.under-banner { /* Shift container down below fixed-position banner. */
+  margin-top: 60px;
+  width: 100%;
+}
+
+.separated {
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #DBDBDB;
+}
+
+.under-banner p {
+  overflow: auto; 
+  margin: 1em;
+}
+
+.under-banner h5 {
+  margin: 1em;
+}

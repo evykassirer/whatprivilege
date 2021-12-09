@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>What Privilege?</title>
+<meta name="description" content="Learn about how our experiences can give us power and privilege with an online interactive activity.">
+<meta name="author" content="Evy, Anna, Joey">
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="skeleton.css">
+
+<link rel="stylesheet" href="utility.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="animation.css">
+
+
+<!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+
+<body class="background">
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<div class="banner row"> 
+  <div class="left">
+    <img src="whatprivilegelogo.png">
+  </div>
+</div>
+  
+
+    
+<div class="container center">
+  <div id="home" class="intro highlight">
+    <h1>What Privilege?<h1>
+	<h5>We have all heard of the concept of "privilege".</h5>
+        <h5>What does it actually mean?</h5>
+        <h5>Why should you care?</h5>
+	<a id="start" class="button button-primary">Find out</a>
+  </div>
+
+  <div id="instructions" class="intro highlight hidden">
+    <h5> <span class="italics">The purpose of this activity is to learn to recognize how power and privilege can affect our lives even when we are not aware it is happening. The purpose is not to blame anyone for having more power or privilege or for receiving more help in achieving goals, but to have an opportunity to identify both obstacles and benefits experienced in our life."</span>
+      <a class="source" href="http://www.albany.edu/ssw/efc/pdf/Module%205_1_Privilege%20Walk%20Activity.pdf">(Source)</a></h5>
+    <h5>Answer the following questions honestly. Your responses are recorded anonymously. You may skip questions if you wish.</h5>
+    <div class="center">
+      <a id="begin" class="button button-primary">Begin</a>
+      <h6>Trigger Warning: This app mentions sexual assault, transsexism, cissexism, ableism and racism.</h6>
+    </div>  
+  </div>
+
+  <div id="qbox" class="highlight middle hidden">
+    <div id="step1">
+      <div class="row question">
+        <div class="twelve columns">
+          <h4 id="qtext">Did your parents read to you as a child?</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <button class="button-primary" id="no">No</button>
+          <button class="button-primary" id="yes">Yes</button>
+          <div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <input class="button" id="skip" type="submit" value="skip">
+            </div>
+          </div>
+        </div>
+        <div id="step2" class="hidden">
+          <div class="row spaced">
+            <div class="twelve columns">
+              <div class="horizontal">
+                <div class="center fill">
+                  <div class="bar" data-percent-no="20">
+                    &nbsp
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <h6 id="results" class="result">20% of total responses were no
+              </h6>
+            </div>
+          </div>
+          <div class="row spaced">
+            <div class="twelve columns">
+              <input class="button-primary" id="next" type="submit" value="Next">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div id="final" class="row center separated hidden">
+        <div class="intro highlight">
+          <p>
+            Thank you for completing this excercise!
+          </p>
+        </div>
+
+        <div class="row highlight results-title">
+            <div class="six columns">
+                <h5>Question</h5>
+            </div>
+            <div class="six columns">
+                <h5>Results</h5>
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Did your parents read to you as a child?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="20">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  20% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Can you find clothes in your size at a generic clothing store?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="14">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  14% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Have you studied the history and culture of your ethnic ancestors in primary and/or secondary school?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="44">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        44% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Can you move around all day without a recurring injury flaring up?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="14">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        14% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Can you walk home at night without fear of being in danger?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="45">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        45% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Are you able to attend events without wondering if there&#39;s a bathroom you can use?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="11">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        11% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Do you know someone who could loan you money in a pinch?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="16">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        16% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+        
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Do people always believe you when you say where you&#39;re from?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="28">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        28% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Is there a national holiday in the country that you live in that honours an aspect/event of your religious/cultural background? (If this doesn&#39;t apply to you, skip this question)</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="47">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  47% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>           
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Can you see a doctor when you need to?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="13">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  13% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Are you comfortable holding hands with your significant other(s) in public?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="23">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  23% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Have you been offered a job with the help of a friend or a family member?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="47">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  47% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Are you able to attend events without wondering if the main entrance is accessible to you?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="14">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  14% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Do you think of the police as someone you can call for help?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="23">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  23% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Do you commonly relate to people positively portrayed in the media and with whom you share significant aspects of your identity (e.g. race, ethnicity, gender, sexual orientation, ability)?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="44">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  44% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Can you fall asleep easily once you&#39;ve decided to fall asleep?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="47">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  47% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Have you always been able to afford at least 2 meals a day?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="13">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        13% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <div class="row highlight separated">
+            <div class="six columns">
+                <p>Can you discuss all aspects of your identity with your family?</p>
+            </div>
+            <div class="six columns">
+                <div class="row spaced">
+    <div class="twelve columns">
+        <div class="horizontal">
+            <div class="center fill">
+                <div class="bar" data-percent-no="48">
+                  &nbsp
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+      <h6 class="result">
+        48% 
+        of total responses were no
+      </h6>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Is the gender on your official documents correct?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="6">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  6% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Have you always felt like your identity was well-described by categorical boxes on a medical form?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="35">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  35% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row highlight separated">
+          <div class="six columns">
+            <p>Have professionals of your race, ethnicity, gender, sexual orientation, *and* ability been positively discussed or publicized within the last month?</p>
+          </div>
+          <div class="six columns">
+            <div class="row spaced">
+              <div class="twelve columns">
+                <div class="horizontal">
+                  <div class="center fill">
+                    <div class="bar" data-percent-no="35">
+                      &nbsp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <h6 class="result">
+                  35% 
+                  of total responses were no
+                </h6>
+              </div>
+            </div>
+          </div>          
+        </div>
+    </div>
+</div>
+    
+<div id="rbox" class="row hidden">
+  <h4 id="qno" class="bottom-right">Question 1/21</h4>
+</div>
+
+<div class="row footer">
+    <h6>Created by 
+        <a href="http://www.evykassirer.com/" target="_blank">Evy</a>, 
+        <a href="http://joeyrideout.com/" target="_blank">Joey</a>, and 
+        <a href="https://github.com/annalorimer" target="_blank">Anna</a> at
+        <a href="http://deltahacks.io" target="_blank">deltaHacks</a>.
+        Content from
+        <a href="http://systers.org/wiki/communities/doku.php?id=wiki:ghc:ghc14:what_do_you_mean_it_isn_t_a_meritocracy_bof">GHC</a>.
+        Source on 
+        <a href="http://github.com/evykassirer/whatprivilege" target="_blank">GitHub</a>.
+    </h6>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+      <img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" />
+    </a>
+</div>
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="bar.js"></script>
+    <script src="single.js"></script>
+
+<!-- Analytics
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-59920087-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>
