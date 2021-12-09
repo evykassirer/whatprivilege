@@ -161,6 +161,7 @@ function showQuestion() {
         $(rbox).hide();
         $(qbox).hide();
         $(final).show();
+        animateBars();
     }else{
         $(yes).show();
         $(no).show();
