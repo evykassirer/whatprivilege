@@ -1,1 +1,6 @@
-../static_media/whatprivilege/workshop.js
+$(your-url).hide();
+$(text).hide();
+
+$(workshop-button).on('click', function() {
+	$(your-url).show();
+});
